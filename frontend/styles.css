@@ -21,27 +21,21 @@ nav .buttons {
     gap: 1em;
 }
 
-.cars {
+main {
+    height: calc(100vh - 60px); 
+    background: url('./img/carro-principal.jpg') no-repeat center center;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
 }
 
-.cars img {
-    max-width: 100%;
-    height: auto;
-}
-
-section div {
-    margin-bottom: 2em;
+.mensaje{
     display: flex;
-    align-items: flex-start;
-    margin-left: 20px;
-    flex-direction: column;
 }
+
+
+
 
 .buttons {
     display: flex;
@@ -63,7 +57,6 @@ section div {
     background-color: #ddd;
 }
 
-/* Nueva clase para el botón activo */
 .btn.active {
     background-color: #333;
     color: #ffffff;
@@ -84,6 +77,7 @@ footer {
     padding: 1em;
     margin-bottom: 1em;
     text-align: center;
+    
 }
 
 .vehiculo img {
