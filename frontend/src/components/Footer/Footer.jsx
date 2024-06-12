@@ -1,14 +1,13 @@
-import React from "react";
 import './Footer.css';
-
 
 function Footer() {
 
     return (
-        <Footer>
+        <div>
             <p> Mi Empresa. Todos los derechos reservados</p>
-        </Footer>
-    );
+        </div>
+        
+    )
 }
 
-export default Footer;
+export default Footer
