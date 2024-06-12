@@ -1,17 +1,18 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar/Navbar'
-import Footer from './components/Footer/Footer'
 import Inicio from './veiws/Inicio/Inicio'
 import Vehiculos from './veiws/Vehiculos/Vehiculos'
 import Registro from './veiws/Registro/Registro'
 import Login from './veiws/Login/Login'
 import PublicarAviso from './veiws/PublicarAviso/PublicarAviso'
+import Footer from './components/Footer/Footer'
+import Navbar from './components/Navbar/Navbar'
+
 
 function App() {
 
   return (
-    <>
+    <div>
       <Navbar />
       <Routes>
         <Route path='/' element={<Inicio />} />
@@ -21,7 +22,8 @@ function App() {
         <Route path='/publicar' element={<PublicarAviso />} />
       </Routes>
       <Footer />
-    </>
+
+    </div>
   )
 }
 
