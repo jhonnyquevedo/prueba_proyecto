@@ -1,19 +1,26 @@
 import './Login.css'
-import { NavLink } from "react-router-dom";
-
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/Context'
 
 function Login() {
+    const { login } = useAuth()
+    const navigate = useNavigate()
+
+    const handleLogin = () => {
+        login()
+        navigate('/')
+    }
     return (
-        <div>
-            <h1>Registrate</h1>
-            <div>
-                <input type="text" placeholder="Email"/>
-                <input type="text" placeholder="Contraseña"/>
+        <div className="login-container">
+            <h1>Iniciar Sesión</h1>
+            <div className="login-inputs">
+                <input type="text" placeholder="Email" />
+                <input type="password" placeholder="Contraseña" />
             </div>
-            <button>Ingresar</button>
-            <div>
-            <p>Aún no tienes cuenta? </p>
-            <NavLink to={"/registro"}>Registrate</NavLink>
+            <button onClick={handleLogin}>Ingresar</button>
+            <div className="register-link">
+                <p>¿Aún no tienes cuenta?</p>
+                <NavLink to="/registro">Regístrate</NavLink>
             </div>
         </div>
     )
