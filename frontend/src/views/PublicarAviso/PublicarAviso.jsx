@@ -30,7 +30,6 @@ function PublicarAviso() {
     event.preventDefault();
     console.log('Datos del vehículo:', vehiculo);
     alert('Datos enviados exitosamente. Revisa la consola para ver los datos.');
-    
   };
 
   return (
