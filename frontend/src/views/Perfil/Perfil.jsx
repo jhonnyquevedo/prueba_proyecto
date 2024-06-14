@@ -2,7 +2,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 import './Perfil.css';
-import fotoPerfil from '../../assets/img/vehiculo1.jpg'
+import fotoPerfil from '../../assets/img/vehiculo1.jpg';
+import { useNavigate } from 'react-router-dom';
 
 function Perfil() {
   const [usuario] = useState({
@@ -13,12 +14,15 @@ function Perfil() {
     foto: fotoPerfil
   });
 
+  const navigate = useNavigate();
+
   const handleEditar = () => {
-    console.log('Editar perfil');
+    navigate('/editar-perfil');
   };
 
   const handleEliminar = () => {
     console.log('Eliminar cuenta');
+    alert('La cuenta ha sido eliminada exitosamente.');
   };
 
   return (
