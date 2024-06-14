@@ -1,0 +1,66 @@
+.contenedor-perfil {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bienvenida {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .info-usuario {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-direction: column;
+  }
+  
+  .foto-perfil {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .campos {
+    flex: 1;
+  }
+  
+  .acciones {
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .boton-editar, .boton-eliminar {
+    background-color: #4C3280;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  .boton-editar:hover, .boton-eliminar:hover {
+    background-color: #0cac2e
+  }
+  
+  @media (max-width: 768px) {
+    .info-usuario {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .foto-perfil {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+  
