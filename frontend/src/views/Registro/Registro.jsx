@@ -34,65 +34,37 @@ function Registro() {
                 <div>
                     <label>
                         Nombre
-                        <input
-                            type="text"
-                            name='nombre'
-                            onChange={handleChange}
-                            value={nuevoUsuario.nombre}
-                            placeholder='Nombre'
-                        />
+                        <input type="text" name='nombre' onChange={handleChange} value={nuevoUsuario.nombre} placeholder='Nombre' />
                     </label>
                     <label>
                         Apellido
-                        <input
-                            type="text"
-                            name='apellido'
-                            onChange={handleChange}
-                            value={nuevoUsuario.apellido}
-                            placeholder='Apellido' />
+                        <input type="text" name='apellido' onChange={handleChange} value={nuevoUsuario.apellido} placeholder='Apellido' />
                     </label>
                 </div>
                 <div>
                     <label>
                         Número de telefono
                         <p>+56 9</p>
-                        <input
-                            type="number"
-                            name='numero'
-                            onChange={handleChange}
-                            value={nuevoUsuario.numero}
-                        />
+                        <input type="number" name='numero' onChange={handleChange} value={nuevoUsuario.numero} />
                     </label>
                     <label>
                         Email
-                        <input type="text"
-                            name='email'
-                            onChange={handleChange}
-                            placeholder='Email'
-                            value={nuevoUsuario.email}
-                        />
+                        <input type="text" name='email' onChange={handleChange} placeholder='Email' value={nuevoUsuario.email} />
                     </label>
                 </div>
                 <div>
                     <label>
                         Foto
-                        <input
-                            type="file"
-                            accept='image/*'
-                            onChange={handleImageChange}
-                        />
+                        <input type="file" accept='image/*' onChange={handleImageChange} />
                     </label>
-                    {nuevoUsuario.imagen && <img src={nuevoUsuario.imagen} alt="Vehículo" className="imagen-nuevoUsuario" />}
+                    <div>
+                        {nuevoUsuario.imagen && <img src={nuevoUsuario.imagen} alt="Vehículo" className="imagen-nuevoUsuario" />}
+                    </div>
                 </div>
                 <div>
                     <label>
                         Contraseña
-                        <input
-                            type="text"
-                            name='contraseña'
-                            onChange={handleChange}
-                            value={nuevoUsuario.contraseña}
-                        />
+                        <input type="text" name='contraseña' onChange={handleChange} value={nuevoUsuario.contraseña} />
                     </label>
                     <label>
                         Confirmar contraseña
