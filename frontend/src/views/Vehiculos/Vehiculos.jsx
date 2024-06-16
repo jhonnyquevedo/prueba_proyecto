@@ -1,4 +1,4 @@
-import { useEffect, useState, React } from "react";
+import { useEffect, useState } from "react";
 import Card from "../../components/card/Card";
 import { opciones } from "../../../public/opciones"; // de aca nos estamos trayendo las opciones que deberian estar en la base de datos, para poder mapear las opciones disponibles
 import { Link } from "react-router-dom";
@@ -141,6 +141,7 @@ function Vehiculos() {
                 {data.map(element => (
                  <Link key={element.id} to={`/detalle/${element.id}`}>
                     <Card
+                        key={element.id}
                         id={element.id}
                         imagen={element.imagen}
                         titulo={element.titulo}
