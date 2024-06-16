@@ -1,9 +1,15 @@
-import React from 'react'
-import './Detalle.css'
+// Detalle.jsx
+import React from 'react';
+import { useParams } from 'react-router-dom';
+
 function Detalle() {
+    let { id } = useParams();
+    
     return (
-        <h1>Detalle</h1>
-    )
+        <div>
+            <h1>Detalle del Vehículo</h1>
+        </div>
+    );
 }
 
-export default Detalle
+export default Detalle;
