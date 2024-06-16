@@ -4,31 +4,22 @@ import { Link } from 'react-router-dom';
 function Card({ id, imagen, titulo, marca, modelo, año, transmision }) {
 
     return (
-       <div className='card' /* key={elemento.id } */>
-           <label className='fotoVehiculo'>
-                <img src={imagen} alt="imagen del vehiculo" />
-            </label>
-            <div className='descripcionCardVehiculo'>
-                <h3>{titulo}</h3>
-                <label>
-                    <p>marca: {marca}</p>
-                    <p>modelo: {modelo}</p>
-              </label>
-                <label>
-                   <p>año: {año}</p>
-               </label>
-               <label>
-                    <p>transmision: {transmision}</p>
-                </label>
+        <div className="card" style={{ width: "250px" }}/* key={elemento.id} */>
+            <img src={imagen} className="card-img-top" alt="imagen del vehículo" />
+            <div className="card-body">
+                <h5 className="card-title">{titulo}</h5>
+                <p className="card-text">marca: {marca}</p>
+                <p className="card-text">modelo: {modelo}</p>
+                <p className="card-text">año: {año}</p>
+                <p className="card-text">transmision: {transmision}</p>
 
-           </div>
-            <Link to={`/detalle/${id}`}>
-
-            <button>Ver detalle</button>
-        </Link>
+                <Link to={`/detalle/${id}`} >
+                    <button>Ver detalle</button>
+                </Link>
+            </div>
         </div>
     )
-   
+
 }
 
 export default Card

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "../../components/card/Card";
 import { opciones } from "../../../public/opciones"; // de aca nos estamos trayendo las opciones que deberian estar en la base de datos, para poder mapear las opciones disponibles
 import { Link } from "react-router-dom";
+import './Vehiculos.css';
 function Vehiculos() {
 
     useEffect(() => {
@@ -121,9 +122,16 @@ function Vehiculos() {
                             <option value={transmision} key={index}>{transmision}</option>
                         )}
                     </select>
+                    <br />
+                    <br />
                     <button onClick={aplicarFiltro}>Buscar</button>
                 </div>
+
                 <div>
+                    <h3>Ordenar por:</h3>
+                </div>
+
+                <div className="ordenarPor">
                     <div>
                         <button onClick={() => ordenar('precio')} >Precio </button>
                     </div>
@@ -135,11 +143,11 @@ function Vehiculos() {
                     </div>
                 </div>
             </div>
-
+            <h1>AUTOS PUBLICADOS</h1>
             <div className="galeriaVehiculos">
-                <h1>AUTOS PUBLICADOS</h1>
+                
                 {data.map(element => (
-                 <Link key={element.id} to={`/detalle/${element.id}`}>
+                 < div key={element.id} to={`/detalle/${element.id}`}>
                     <Card
                         key={element.id}
                         id={element.id}
@@ -150,7 +158,7 @@ function Vehiculos() {
                         año={element.año}
                         transmision={element.transmision}
                     />
-                 </Link>
+                 </div>
                 ))}
             </div>
         </div>
