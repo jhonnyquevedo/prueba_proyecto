@@ -1,15 +1,24 @@
+.container {
+    height: 100vh;
+    background-color: #EEEEEE;
+    color: #31363F;
+}
+
 .login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 400px;
+    width: 400px;
+    background-color: white;
 }
 
 .login-inputs {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    background-color: white;
 }
 
 .login-inputs input {
@@ -18,9 +27,23 @@
     width: 200px;
 }
 
+input {
+    width: 10%;
+}
+
 button {
     padding: 10px 20px;
     margin-bottom: 20px;
+    border-color: none;
+    background-color: #76ABAE;
+    color: #222831;
+    border: none;
+    border-radius: 15px;
+    width: 150px;
+}
+
+button:hover {
+    background-color: aquamarine;
 }
 
 .register-link {

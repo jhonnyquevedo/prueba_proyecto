@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 function Card({ id, imagen, titulo, marca, modelo, año, transmision }) {
 
     return (
-        <div className='card' /* key={elemento.id } */>
-            <label className='fotoVehiculo'>
+       <div className='card' /* key={elemento.id } */>
+           <label className='fotoVehiculo'>
                 <img src={imagen} alt="imagen del vehiculo" />
             </label>
             <div className='descripcionCardVehiculo'>
@@ -13,19 +13,22 @@ function Card({ id, imagen, titulo, marca, modelo, año, transmision }) {
                 <label>
                     <p>marca: {marca}</p>
                     <p>modelo: {modelo}</p>
-                </label>
+              </label>
                 <label>
-                    <p>año: {año}</p>
-                </label>
-                <label>
+                   <p>año: {año}</p>
+               </label>
+               <label>
                     <p>transmision: {transmision}</p>
                 </label>
-            </div>
+
+           </div>
             <Link to={`/detalle/${id}`}>
+
             <button>Ver detalle</button>
         </Link>
         </div>
     )
+   
 }
 
 export default Card
