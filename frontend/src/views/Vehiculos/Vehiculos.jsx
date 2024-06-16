@@ -1,6 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { vehiculos } from './vehiculos' // esto es una data provisional que simula lo que entregará la BD
+import { useEffect, useState, React } from "react";
 import Card from "../../components/card/Card";
 import { opciones } from "../../../public/opciones"; // de aca nos estamos trayendo las opciones que deberian estar en la base de datos, para poder mapear las opciones disponibles
 
@@ -10,6 +8,7 @@ function Vehiculos() {
         getDataVehiculos()
     }, [])
 
+    // llamado a la "api" para obtener la data de las publicaciones
     const [data, setData] = useState([])
 
     const getDataVehiculos = async () => {
@@ -17,19 +16,19 @@ function Vehiculos() {
             const urlApi = '/vehiculos.json'
             const res = await fetch(urlApi)
             const dataApi = await res.json()
+            console.log("esta es la data", dataApi)
             setData(dataApi)
         } catch (error) {
             console.log("hay un error", error)
         }
     }
 
-    console.log(data)
 
     // Estados para los filtros
     const [estadoOpcion, setEstadoOpcion] = useState("")
     const [categoriaOpcion, setCategoriaOpcion] = useState("")
     const [marcaOpcion, setMarcaOpcion] = useState("")
-    const [modeloOcion, setModeloOpcion] = useState("")
+    const [modeloOpcion, setModeloOpcion] = useState("")
     const [añoOpcion, setAñoOpcion] = useState("")
     const [transmisionOpcion, setTransmisionOpcion] = useState("")
 
@@ -103,7 +102,7 @@ function Vehiculos() {
                             <option value={marca.nombre} key={index}>{marca.nombre}</option>
                         )}
                     </select>
-                    <select value={modeloOcion} disabled={!marcaOpcion} onChange={(element) => cambioEnModelo(element)}>
+                    <select value={modeloOpcion} disabled={!marcaOpcion} onChange={(element) => cambioEnModelo(element)}>
                         <option value="">Modelo</option>
                         {getModeloPorMarca(marcaOpcion).map((modelo, index) =>
                             <option value={modelo} key={index}>{modelo}</option>
