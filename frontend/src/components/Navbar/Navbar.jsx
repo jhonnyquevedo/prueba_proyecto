@@ -16,7 +16,7 @@ const {isAuthenticated, logout} = useContext(AuthContext)
         <div className="buttons">
           {!isAuthenticated ? (
             <>
-              <NavLink className={setActiveClass} to="/">
+              <NavLink to="/">
                 <img src="https://via.placeholder.com/300" alt="" />
               </NavLink>
               <NavLink active className={setActiveClass} to="/login">
