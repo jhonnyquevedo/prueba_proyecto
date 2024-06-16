@@ -1,9 +1,10 @@
 import './Login.css'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/Context'
+import { useContext } from 'react'
+import { AuthContext } from '../../context/Context'
 
 function Login() {
-    const { login } = useAuth()
+    const {login} = useContext(AuthContext)
     const navigate = useNavigate()
 
     const handleLogin = () => {
