@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './EditarPerfil.css';
 
 function EditarPerfil() {
+
+  // aqui debemos hacer la logica de recibir el token con estos datos, validarlo, y es o que tenemos que setear en el estado de usuario
   const [usuario, setUsuario] = useState({
     nombre: 'Juan',
     apellido: 'Pérez',
@@ -37,13 +39,13 @@ function EditarPerfil() {
     alert('Los cambios han sido guardados exitosamente.');
   };
 
-  return (
+  return ( 
     <div className="contenedor-editar-perfil">
       <h1>Editar Perfil</h1>
       <form onSubmit={handleGuardar}>
         <div className="campo">
           <label>Nombre</label>
-          <input
+          <input // el nombre y el apellido no se pueden cambiar una vez ingresado el usuario, solo debemos dejar habilitado el cambio para telefono, email y foto
             type="text"
             name="nombre"
             value={usuario.nombre}

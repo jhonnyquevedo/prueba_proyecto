@@ -6,7 +6,7 @@ import fotoPerfil from '../../assets/img/vehiculo1.jpg';
 import { useNavigate } from 'react-router-dom';
 
 function Perfil() {
-  const [usuario] = useState({
+  const [usuario, setUsuario] = useState({ // con la validacion del token debemos setear en Usuario con los datos correspondientes
     nombre: 'Juan',
     apellido: 'Pérez',
     email: 'juan.perez@example.com',
