@@ -1,49 +1,45 @@
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-// import { AuthContext, useAuth } from "../../context/Context";
 import { useContext } from "react";
-import { AuthContext } from '../../context/Context'
+import { AuthContext } from '../../context/Context';
 
 function Navbar() {
-
-const {isAuthenticated, logout} = useContext(AuthContext)
-  //const { isAuthenticated, logout } = useAuth();
-  const setActiveClass = ({ isActive }) => (isActive ? "active" : "inactive");
+  const { isAuthenticated, logout } = useContext(AuthContext);
 
   return (
     <header>
-      <nav className="nav" >
+      <nav className="nav">
         <div className="buttons">
+          <NavLink to="/" exact="true" activeclassname="active-link">
+            <img src="https://via.placeholder.com/300" alt="Logo" />
+          </NavLink>
           {!isAuthenticated ? (
             <>
-              <NavLink className={setActiveClass} to="/">
-                <img src="https://via.placeholder.com/300" alt="" />
-              </NavLink>
-              <NavLink active className={setActiveClass} to="/login">
+              <NavLink to="/login" activeclassname="active-link">
                 Iniciar Sesión
               </NavLink>
-              <NavLink className={setActiveClass} to="/registro">
+              <NavLink to="/registro" activeclassname="active-link">
                 Registrarse
               </NavLink>
-              <NavLink className={setActiveClass} to="/vehiculos">
-                Vehiculos
+              <NavLink to="/vehiculos" activeclassname="active-link">
+                Vehículos
               </NavLink>
             </>
           ) : (
             <>
-              <NavLink className={setActiveClass} to="/vehiculos">
-                Vehiculos
+              <NavLink to="/vehiculos" activeclassname="active-link">
+                Vehículos
               </NavLink>
-              <NavLink className={setActiveClass} to="/publicar">
+              <NavLink to="/publicar" activeclassname="active-link">
                 Publicar
               </NavLink>
-              <NavLink className={setActiveClass} to="/mis-publicaciones">
+              <NavLink to="/mis-publicaciones" activeclassname="active-link">
                 Mis Publicaciones
               </NavLink>
-              <NavLink className={setActiveClass} to="/perfil">
+              <NavLink to="/perfil" activeclassname="active-link">
                 Perfil
               </NavLink>
-              <NavLink className={setActiveClass} to="/login" onClick={logout}>
+              <NavLink to="/login" activeclassname="active-link" onClick={logout}>
                 Cerrar Sesión
               </NavLink>
             </>
