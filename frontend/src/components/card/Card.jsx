@@ -1,4 +1,5 @@
-import './card.css'
+import './card.css';
+import { Link } from 'react-router-dom';
 
 function Card({ id, imagen, titulo, marca, modelo, año, transmision }) {
 
@@ -20,7 +21,9 @@ function Card({ id, imagen, titulo, marca, modelo, año, transmision }) {
                     <p>transmision: {transmision}</p>
                 </label>
             </div>
+            <Link to={`/detalle/${id}`}>
             <button>Ver detalle</button>
+        </Link>
         </div>
     )
 }
