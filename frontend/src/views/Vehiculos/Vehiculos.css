@@ -1,0 +1,12 @@
+.ordenarPor{
+    display: flex;
+    gap: 30px;
+}
+
+.galeriaVehiculos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}

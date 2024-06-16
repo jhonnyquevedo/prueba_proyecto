@@ -51,20 +51,19 @@ function Perfil() {
           </button>
         </div>
 
-      <div className="acciones">
-        <button className="boton-icono" onClick={handleEditar}>
-          <FontAwesomeIcon icon={faEdit} style={{ color: '#FFD43B' }} />
-          <p>Editar</p>
-        </button>
-        <button className="boton-icono" onClick={handleEliminar}>
-          <FontAwesomeIcon icon={faTrashAlt} style={{ color: '#e40c0c' }} />
-          <p>Eliminar cuenta</p>
-        </button>
-
+        <div className="acciones">
+          <button className="boton-icono" onClick={handleEditar}>
+            <FontAwesomeIcon icon={faEdit} style={{ color: '#FFD43B' }} />
+            <p>Editar</p>
+          </button>
+          <button className="boton-icono" onClick={handleEliminar}>
+            <FontAwesomeIcon icon={faTrashAlt} style={{ color: '#e40c0c' }} />
+            <p>Eliminar cuenta</p>
+          </button>
+        </div>
       </div>
-    </div>
-
-  );
+      </div>
+    );
 }
 
-export default Perfil;
+      export default Perfil;

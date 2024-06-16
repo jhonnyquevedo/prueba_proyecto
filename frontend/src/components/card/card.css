@@ -1,0 +1,12 @@
+button{
+    background-color: #76ABAE;
+    color: #222831;
+}
+
+button :hover{
+    background-color: aquamarine;
+}
+
+.card-body{
+    color: #222831;
+}
