@@ -1,9 +1,13 @@
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../../context/Context";
+// import { AuthContext, useAuth } from "../../context/Context";
+import { useContext } from "react";
+import { AuthContext } from '../../context/Context'
 
 function Navbar() {
-  const { isAuthenticated, logout } = useAuth();
+
+const {isAuthenticated, logout} = useContext(AuthContext)
+  //const { isAuthenticated, logout } = useAuth();
   const setActiveClass = ({ isActive }) => (isActive ? "active" : "inactive");
 
   return (

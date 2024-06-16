@@ -3,20 +3,19 @@ import { useState, useEffect } from "react"
 
 function EditarPublicaciones() {
 
-    const [publicacion, setPublicacion] = useState()
+    const [publicacion, setPublicacion] = useState({})
 
     useEffect(()=>{
         getPublicacionById() // llamado a la api de la data de la publicacionque estamos editando
+        console.log("hola")
     }, [])
 
     const getPublicacionById = async () => {
         try {
-            const res = await fetch("/publicacion.js")
-            if (!res.ok){
-                return console.log("error en el fetch")
-            }
+            const res = await fetch("/publicacion.json")
             const dataDePublicacion = await res.json()
             setPublicacion(dataDePublicacion)
+            console.log(dataDePublicacion)
             return dataDePublicacion
         } catch (error) {
             console.log("algo paso")

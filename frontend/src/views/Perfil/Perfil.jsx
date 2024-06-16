@@ -40,7 +40,7 @@ function Perfil() {
         </div>
       </div>
       <div className="acciones">
-      <button className="boton-icono" onClick={handleEditar}>
+        <button className="boton-icono" onClick={handleEditar}>
           <FontAwesomeIcon icon={faEdit} style={{ color: '#FFD43B' }} />
           <p>Editar</p>
         </button>

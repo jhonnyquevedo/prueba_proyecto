@@ -1,8 +1,8 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState } from 'react';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
     // autenticacion provisional del navbar
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -22,4 +22,5 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export default AuthProvider
+// export const useAuth = () => useContext(AuthContext);
