@@ -7,20 +7,33 @@ import { opciones } from "../../../public/opciones"; // de aca nos estamos traye
 function Vehiculos() {
 
     useEffect(() => {
-        setData(vehiculos)
+        getDataVehiculos()
     }, [])
 
     const [data, setData] = useState([])
 
-    // Estados para los filtros
-    const [estadoOpcion, setEstadoOpcion] = useState("seleccionar")
-    const [categoriaOpcion, setCategoriaOpcion] = useState("seleccionar")
-    const [marcaOpcion, setMarcaOpcion] = useState("seleccionar")
-    const [modeloOcion, setModeloOpcion] = useState("seleccionar")
-    const [añoOpcion, setAñoOpcion] = useState("seleccionar")
-    const [transmisionOpcion, setTransmisionOpcion] = useState("seleccionar")
-    console.log("estos son los filtros seleccionados ", estadoOpcion, categoriaOpcion, marcaOpcion, modeloOcion, añoOpcion, transmisionOpcion)
+    const getDataVehiculos = async () => {
+        try {
+            const urlApi = '/vehiculos.json'
+            const res = await fetch(urlApi)
+            const dataApi = await res.json()
+            setData(dataApi)
+        } catch (error) {
+            console.log("hay un error", error)
+        }
+    }
 
+    console.log(data)
+
+    // Estados para los filtros
+    const [estadoOpcion, setEstadoOpcion] = useState("")
+    const [categoriaOpcion, setCategoriaOpcion] = useState("")
+    const [marcaOpcion, setMarcaOpcion] = useState("")
+    const [modeloOcion, setModeloOpcion] = useState("")
+    const [añoOpcion, setAñoOpcion] = useState("")
+    const [transmisionOpcion, setTransmisionOpcion] = useState("")
+
+    // setear el cambio en la opcion seleccionada
     const cambioEnEstado = (element) => setEstadoOpcion(element.target.value)
     const cambioEnCategoria = (element) => setCategoriaOpcion(element.target.value)
     const cambioEnMarca = (element) => {
@@ -31,9 +44,38 @@ function Vehiculos() {
     const cambioEnAño = (element) => setAñoOpcion(element.target.value)
     const cambioEnTransmision = (element) => setTransmisionOpcion(element.target.value)
 
+    // funcion para detectar la marca y poder mapear el modelo segun la marca
     const getModeloPorMarca = (marca) => {
         const marcaElegida = opciones[0].opcionMarcaYModelo.find(element => element.nombre === marca)
         return marcaElegida ? marcaElegida.modelos : []
+    }
+
+    // funcion para aplicar flitro
+    const aplicarFiltro = () => {
+        // logica para hacer el llamado a la api y que traiga la data con los filtros aplicados
+        console.log("enviando peticion con filtros")
+        alert("peticion hecha")
+    }
+
+    // funciones para ordenar la data
+    const [configOrden, setConfigOrden] = useState({ key: '', direccion: 'asc' })
+
+    const ordenar = (key) => {
+        let direccion = 'asc'
+        if (configOrden.key === key && configOrden.direccion === 'asc') { direccion = 'desc' }
+
+        const dataOrdenada = [...data].sort((a, b) => {
+            if (a[key] < b[key]) {
+                return direccion === 'asc' ? -1 : 1;
+            }
+            if (a[key] > b[key]) {
+                return direccion === 'asc' ? 1 : -1;
+            }
+            return 0;
+        })
+
+        setData(dataOrdenada)
+        setConfigOrden({ key, direccion })
     }
 
     return (
@@ -61,7 +103,6 @@ function Vehiculos() {
                             <option value={marca.nombre} key={index}>{marca.nombre}</option>
                         )}
                     </select>
-
                     <select value={modeloOcion} disabled={!marcaOpcion} onChange={(element) => cambioEnModelo(element)}>
                         <option value="">Modelo</option>
                         {getModeloPorMarca(marcaOpcion).map((modelo, index) =>
@@ -81,8 +122,21 @@ function Vehiculos() {
                             <option value={transmision} key={index}>{transmision}</option>
                         )}
                     </select>
+                    <button onClick={aplicarFiltro}>Buscar</button>
+                </div>
+                <div>
+                    <div>
+                        <button onClick={() => ordenar('precio')} >Precio </button>
+                    </div>
+                    <div>
+                        <button onClick={() => ordenar('kilometraje')}>Kilometraje</button>
+                    </div>
+                    <div>
+                        <button onClick={() => ordenar('año')}>Año</button>
+                    </div>
                 </div>
             </div>
+
             <div className="galeriaVehiculos">
                 <h1>AUTOS PUBLICADOS</h1>
                 {data.map(element => (

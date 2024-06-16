@@ -3,6 +3,7 @@ import { createContext, useState, useContext } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    // autenticacion provisional del navbar
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const login = () => {

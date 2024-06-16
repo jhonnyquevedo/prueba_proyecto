@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 function Registro() {
 
+    //falta hacer las validaciones con regex para email y contraseña
     const [nuevoUsuario, setNuevoUsuario] = useState({
         nombre: '',
         apellido: '',

@@ -5,7 +5,7 @@ function PublicarAviso() {
   const [vehiculo, setVehiculo] = useState({
     titulo: '',
     precio: '',
-    estado: 'nuevo', 
+    estado: '', 
     marca: '',
     modelo: '',
     año: '',
@@ -31,6 +31,8 @@ function PublicarAviso() {
     console.log('Datos del vehículo:', vehiculo);
     alert('Datos enviados exitosamente. Revisa la consola para ver los datos.');
   };
+
+  // falta dejar mapeados los select ya que los datos se deben seleccionar 
 
   return (
     <div className="container">
