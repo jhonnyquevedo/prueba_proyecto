@@ -15,8 +15,7 @@ function Navbar() {
           </NavLink>
           {!isAuthenticated ? (
             <>
-    
-              <NavLink to="/login" activeclassname="active-link"
+              <NavLink to="/login" activeclassname="active-link">
                 Iniciar Sesión
               </NavLink>
               <NavLink to="/registro" activeclassname="active-link">
