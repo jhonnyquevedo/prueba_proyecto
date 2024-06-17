@@ -1,12 +1,91 @@
-.ordenarPor{
+.containerVehiculos {
+    margin: 0;
+    padding: 0;
+    width: 100%;
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.filtrosVehiculos {
+    width: 90%;
+}
+
+.filtrarPor {
+    margin-top: 10px;
+}
+
+.ordernarPor {
+    margin-top: 20px;
+}
+
+.btnOrdenarPor {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .galeriaVehiculos {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
+    gap: 20px;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.btnFiltros {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.selectFiltros {
+    border-radius: 30px;
+    height: 40px;
+}
+
+.btnBuscarFiltros {
+    height: 40px;
+    margin: 0;
+}
+
+.boton {
+    padding: 10px;
+}
+
+@media (max-width: 425px) {
+    .btnFiltros {
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .btnOrdenarPor {
+        flex-direction: column;
+        gap: 5px;
+        margin: 10px;
+
+    }
+
+    .boton {
+        width: 80px;
+        margin: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .btnFiltros {
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .boton {
+        width: 100px;
+    }
 }
