@@ -122,9 +122,16 @@ function Vehiculos() {
                             <option value={transmision} key={index}>{transmision}</option>
                         )}
                     </select>
+                    <br />
+                    <br />
                     <button onClick={aplicarFiltro}>Buscar</button>
                 </div>
+
                 <div>
+                    <h3>Ordenar por:</h3>
+                </div>
+
+                <div className="ordenarPor">
                     <div>
                         <button onClick={() => ordenar('precio')} >Precio </button>
                     </div>
