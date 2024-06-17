@@ -1,3 +1,4 @@
+import React from 'react'
 import './App.css'
 import AuthProvider from './context/Context'
 import { Routes, Route } from 'react-router-dom'
@@ -29,7 +30,7 @@ function App() {
           <Route path='/publicar' element={<PublicarAviso />} />
           <Route path='/detalle/:id' element={<Detalle />} />
           <Route path='/editar-perfil' element={<EditarPerfil />} />
-          <Route path='/editar-publicacion' element={<EditarPublicacion />} />
+          <Route path='/editar-publicacion/:id' element={<EditarPublicacion />} />
           <Route path='/mis-publicaciones' element={<MisPublicaciones />} />
           <Route path='/perfil' element={<Perfil />} />
         </Routes>

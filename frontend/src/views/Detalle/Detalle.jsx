@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 function Detalle() {
     const { id } = useParams();
+    const location = useLocation();
+    const usuarioActual = location.state?.usuarioActual || null;
     const [vehiculo, setVehiculo] = useState(null);
 
     useEffect(() => {
@@ -18,6 +20,10 @@ function Detalle() {
         } catch (error) {
             console.error('Error fetching vehiculo:', error);
         }
+    };
+
+    const contactarVendedor = (vehiculoId) => {
+        alert(`Contactar al vendedor del vehículo con ID: ${vehiculoId}`);
     };
 
     if (!vehiculo) {
@@ -41,14 +47,11 @@ function Detalle() {
                 <p>Descripción: {vehiculo.descripcion}</p>
             </div>
 
-            <button onClick={() => contactarVendedor(vehiculo.id_publicacion)}>Contactar al vendedor</button>
+            {vehiculo.id_usuario !== usuarioActual && (
+                <button onClick={() => contactarVendedor(vehiculo.id_publicacion)}>Contactar al vendedor</button>
+            )}
         </div>
     );
 }
-
-// Se simula el contacto al vendedor )
-const contactarVendedor = (vehiculoId) => {
-    alert(`Contactar al vendedor del vehículo con ID: ${vehiculoId}`);
-};
 
 export default Detalle;
