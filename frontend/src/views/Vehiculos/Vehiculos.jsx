@@ -3,12 +3,12 @@ import Card from "../../components/card/Card";
 import { opciones } from "../../../public/opciones"; // de aca nos estamos trayendo las opciones que deberian estar en la base de datos, para poder mapear las opciones disponibles
 import { Link } from "react-router-dom";
 function Vehiculos() {
-
+    
     useEffect(() => {
         getDataVehiculos()
     }, [])
 
-    // llamado a la "api" para obtener la data de las publicaciones
+     // llamado a la "api" para obtener la data de las publicaciones
     const [data, setData] = useState([])
 
     const getDataVehiculos = async () => {
@@ -51,7 +51,7 @@ function Vehiculos() {
 
     // funcion para aplicar flitro
     const aplicarFiltro = () => {
-        // logica para hacer el llamado a la api y que traiga la data con los filtros aplicados
+         // logica para hacer el llamado a la api y que traiga la data con los filtros aplicados
         console.log("enviando peticion con filtros")
         alert("peticion hecha")
     }
@@ -139,23 +139,21 @@ function Vehiculos() {
             <div className="galeriaVehiculos">
                 <h1>AUTOS PUBLICADOS</h1>
                 {data.map(element => (
-                 <Link key={element.id} to={`/detalle/${element.id}`}>
-                    <Card
-                        key={element.id}
-                        id={element.id}
-                        imagen={element.imagen}
-                        titulo={element.titulo}
-                        marca={element.marca}
-                        modelo={element.modelo}
-                        año={element.año}
-                        transmision={element.transmision}
-                    />
-                 </Link>
+                    <Link key={element.id_publicacion} to={`/detalle/${element.id_publicacion}`}>
+                        <Card
+                            id={element.id_publicacion}
+                            imagen={element.imagen}
+                            titulo={element.titulo}
+                            marca={element.marca}
+                            modelo={element.modelo}
+                            año={element.año}
+                            transmision={element.transmision}
+                        />
+                    </Link>
                 ))}
             </div>
         </div>
-
     )
 }
 
-export default Vehiculos; 
+export default Vehiculos;
