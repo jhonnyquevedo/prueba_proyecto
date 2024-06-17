@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "../../components/card/Card";
 import { opciones } from "../../../public/opciones"; // de aca nos estamos trayendo las opciones que deberian estar en la base de datos, para poder mapear las opciones disponibles
 import { Link } from "react-router-dom";
+import './Vehiculos.css';
 function Vehiculos() {
     
     useEffect(() => {
