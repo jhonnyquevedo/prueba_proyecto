@@ -31,6 +31,7 @@ function Registro() {
     return (
         <div>
             <h1>Regístrate</h1>
+            <div className='container-form'>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>
@@ -71,9 +72,13 @@ function Registro() {
                         Confirmar contraseña
                         <input type="text" />
                     </label>
-                    <button type='submit' className=''>Registrarse</button>
+                    <div className='separador'>
+                        <button type='submit' className=''>Registrarse</button>
+                    </div>
+                
                 </div>
             </form>
+            </div>
         </div>
     )
 }
