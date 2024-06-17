@@ -88,5 +88,36 @@
         "estado": "Usado",
         "descripcion": "akshdklasjdlyebclasbclavcakjbdcñakegfbkdwbbcakba khbdclabdvae aecbaegcaiecbkaj aerlcal",
         "imagen": "https://img.freepik.com/foto-gratis/vista-coche-3d_23-2150796894.jpg?size=338&ext=jpg&ga=GA1.1.672697106.1718409600&semt=sph"
+    },
+    {
+        "id_usuario": 5,
+        "id_publicacion": 2,
+        "titulo": "Vendo mi Auto",
+        "precio": 100000,
+        "marca": "Ford",
+        "modelo": "Focus",
+        "año": 2010,
+        "kilometraje": 80000,
+        "transmision": "automatico",
+        "categoria": "Automovil",
+        "estado": "Usado",
+        "descripcion": "akshdklasjdlyebclasbclavcakjbdcñakegfbkdwbbcakba khbdclabdvae aecbaegcaiecbkaj aerlcal",
+        "imagen": "https://img.freepik.com/foto-gratis/vista-coche-3d_23-2150796894.jpg?size=338&ext=jpg&ga=GA1.1.672697106.1718409600&semt=sph"
+    },
+    {
+        "id_usuario": 6,
+        "id_publicacion": 2,
+        "titulo": "Vendo mi Auto",
+        "precio": 100000,
+        "marca": "Ford",
+        "modelo": "Focus",
+        "año": 2010,
+        "kilometraje": 80000,
+        "transmision": "automatico",
+        "categoria": "Automovil",
+        "estado": "Usado",
+        "descripcion": "akshdklasjdlyebclasbclavcakjbdcñakegfbkdwbbcakba khbdclabdvae aecbaegcaiecbkaj aerlcal",
+        "imagen": "https://img.freepik.com/foto-gratis/vista-coche-3d_23-2150796894.jpg?size=338&ext=jpg&ga=GA1.1.672697106.1718409600&semt=sph"
     }
+
 ]

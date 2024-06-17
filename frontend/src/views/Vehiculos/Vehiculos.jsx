@@ -144,8 +144,10 @@ function Vehiculos() {
                 </div>
             </div>
 
+            <h1>AUTOS PUBLICADOS</h1>
+
             <div className="galeriaVehiculos">
-                <h1>AUTOS PUBLICADOS</h1>
+                
                 {data.map(element => (
                     <Link key={element.id_publicacion} to={`/detalle/${element.id_publicacion}`}>
                         <Card

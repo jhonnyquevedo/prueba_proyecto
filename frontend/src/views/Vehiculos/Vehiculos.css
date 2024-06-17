@@ -1,12 +1,113 @@
-.ordenarPor{
-    display: flex;
-    gap: 30px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+
+.filtrosVehiculos {
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filtrosVehiculos label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.btnFiltros, .ordenarPor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btnFiltros select, .ordenarPor button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btnFiltros button, .ordenarPor button {
+    background-color: #76ABAE;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.btnFiltros button:hover, .ordenarPor button:hover {
+    background-color: aquamarine;
+}
+
+.btnFiltros select {
+    flex: 1;
+}
+
+.ordenarPor button {
+    flex: 1;
+}
+
 
 .galeriaVehiculos {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.galeriaVehiculos a {
+    text-decoration: none;
+}
+
+.galeriaVehiculos .card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+}
+
+.galeriaVehiculos .card img {
+    width: 100%;
+    height: auto;
+}
+
+.galeriaVehiculos .card-body {
+    padding: 15px;
+    color: #222831;
+    text-align: center;
+}
+
+.galeriaVehiculos .card-body h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.galeriaVehiculos .card-body p {
+    margin: 10px 0 0;
+    color: #666;
+}
+
+
+@media (max-width: 768px) {
+    .btnFiltros, .ordenarPor {
+        flex-direction: column;
+    }
+
+    .galeriaVehiculos {
+        flex-direction: column;
+        align-items: center;
+    }
 }
