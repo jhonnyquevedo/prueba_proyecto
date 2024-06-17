@@ -12,7 +12,7 @@
 .filtrosVehiculos {
     width: 90%;
     padding: 20px;
-    background-color: #fff; /* Color de fondo de filtros */
+    background-color: #fff; 
     margin: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -37,7 +37,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding: 20px; /* Ajuste padding para espaciado uniforme */
+    padding: 20px; 
 }
 
 .btnFiltros {
@@ -50,18 +50,18 @@
 .selectFiltros {
     border-radius: 30px;
     height: 40px;
-    background-color: #f4f4f4; /* Color de fondo de select */
-    border: 1px solid #ccc; /* Color de borde de select */
+    background-color: #f4f4f4; 
+    border: 1px solid #ccc; 
     padding: 10px;
     font-size: 16px;
-    color: #222831; /* Color de texto de select */
+    color: #222831; 
 }
 
 .btnBuscarFiltros {
     height: 40px;
     margin: 0;
-    background-color: #76ABAE; /* Color de fondo de botón */
-    color: #fff; /* Color de texto de botón */
+    background-color: #76ABAE; 
+    color: #fff; 
     border: none;
     cursor: pointer;
     padding: 10px 20px;
