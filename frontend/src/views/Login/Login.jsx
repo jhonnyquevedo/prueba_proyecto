@@ -12,17 +12,20 @@ function Login() {
         navigate('/')
     }
     return (
-        <div className="login-container">
+        <div className='container'>
+            <div className="login-container">
             <h1>Iniciar Sesión</h1>
             <div className="login-inputs">
-                <input type="text" placeholder="Email" />
-                <input type="password" placeholder="Contraseña" />
+                <input type="text" placeholder="Email" style={{ width: '200px' }}/>
+                <input type="password" placeholder="Contraseña" style={{ width: '200px' }}/>
             </div>
             <button onClick={handleLogin}>Ingresar</button>
             <div className="register-link">
                 <p>¿Aún no tienes cuenta?</p>
                 <NavLink to="/registro">Regístrate</NavLink>
             </div>
+        </div>
+        
         </div>
     )
 }

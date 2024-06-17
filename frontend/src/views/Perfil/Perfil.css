@@ -1,8 +1,14 @@
+.container {
+  height: 100vh;
+  background-color: #EEEEEE;
+  color: #31363F;
+}
+
 .contenedor-perfil {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
@@ -35,10 +41,11 @@
     text-align: center;
     display: flex;
     justify-content: flex-end;
+    gap: 10px;
   }
   
   .boton-editar, .boton-eliminar {
-    background-color: #4C3280;
+    background-color: #76ABAE;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -49,7 +56,7 @@
   }
   
   .boton-editar:hover, .boton-eliminar:hover {
-    background-color: #0cac2e
+    background-color: aquamarine;
   }
   
   @media (max-width: 768px) {
