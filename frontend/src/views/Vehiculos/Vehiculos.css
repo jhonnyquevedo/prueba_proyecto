@@ -1,3 +1,4 @@
+
 .containerVehiculos {
     margin: 0;
     padding: 0;
@@ -27,6 +28,7 @@
     justify-content: center;
     gap: 10px;
 }
+
 
 .galeriaVehiculos {
     display: flex;
@@ -89,3 +91,4 @@
         width: 100px;
     }
 }
+

@@ -3,31 +3,21 @@ import { useParams } from 'react-router-dom';
 
 function Detalle() {
     const { id } = useParams();
-    const [vehiculo, setVehiculo] = useState(null); 
+    const [vehiculo, setVehiculo] = useState(null);
 
     useEffect(() => {
         fetchDataVehiculo(id);
     }, [id]);
 
     const fetchDataVehiculo = async (id) => {
-        const dataVehiculo = {
-            id: id,
-            titulo: "Toyota Corolla 2022",
-            imagen: "https://ejemplo.com/imagen.jpg",
-            precio: "20000",
-            estado: "Usado",
-            marca: "Toyota",
-            modelo: "Corolla",
-            año: 2022,
-            km: "50000",
-            transmision: "Automática",
-            categoria: "Sedán",
-            descripcion: "Este es un vehículo Toyota Corolla usado en excelente estado.",
-        };
-
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
-        setVehiculo(dataVehiculo);
+        try {
+            const res = await fetch('/vehiculos.json');
+            const vehiculos = await res.json();
+            const vehiculo = vehiculos.find((v) => v.id_publicacion === parseInt(id, 10));
+            setVehiculo(vehiculo);
+        } catch (error) {
+            console.error('Error fetching vehiculo:', error);
+        }
     };
 
     if (!vehiculo) {
@@ -45,13 +35,13 @@ function Detalle() {
                 <p>Marca: {vehiculo.marca}</p>
                 <p>Modelo: {vehiculo.modelo}</p>
                 <p>Año: {vehiculo.año}</p>
-                <p>Kilometraje: {vehiculo.km}</p>
+                <p>Kilometraje: {vehiculo.kilometraje}</p>
                 <p>Transmisión: {vehiculo.transmision}</p>
                 <p>Categoría: {vehiculo.categoria}</p>
                 <p>Descripción: {vehiculo.descripcion}</p>
             </div>
 
-            <button onClick={() => contactarVendedor(vehiculo.id)}>Contactar al vendedor</button>
+            <button onClick={() => contactarVendedor(vehiculo.id_publicacion)}>Contactar al vendedor</button>
         </div>
     );
 }
