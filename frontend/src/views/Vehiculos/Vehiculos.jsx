@@ -79,67 +79,65 @@ function Vehiculos() {
     }
 
     return (
-        <div>
+        <div className="containerVehiculos">
             <div className="filtrosVehiculos">
-                <label>
+                <label className="filtrarPor">
                     <h3>Filtrar por:</h3>
                 </label>
                 <div className="btnFiltros">
-                    <select value={estadoOpcion} onChange={(element) => cambioEnEstado(element)}>
+                    <select className="selectFiltros" value={estadoOpcion} onChange={(element) => cambioEnEstado(element)}>
                         <option value="">Estado</option>
                         {opciones[0].opcionesEstado?.map((estado, index) =>
                             <option value={estado} key={index} >{estado}</option>
                         )}
                     </select>
-                    <select value={categoriaOpcion} onChange={(element) => cambioEnCategoria(element)} >
+                    <select className="selectFiltros" value={categoriaOpcion} onChange={(element) => cambioEnCategoria(element)} >
                         <option value="">Categoria</option>
                         {opciones[0].opcionesCategoria?.map((categoria, index) =>
                             <option value={categoria} key={index}>{categoria}</option>
                         )}
                     </select>
-                    <select value={marcaOpcion} onChange={(element) => cambioEnMarca(element)}>
+                    <select className="selectFiltros" value={marcaOpcion} onChange={(element) => cambioEnMarca(element)}>
                         <option value="">Marca</option>
                         {opciones[0].opcionMarcaYModelo?.map((marca, index) =>
                             <option value={marca.nombre} key={index}>{marca.nombre}</option>
                         )}
                     </select>
-                    <select value={modeloOpcion} disabled={!marcaOpcion} onChange={(element) => cambioEnModelo(element)}>
+                    <select className="selectFiltros" value={modeloOpcion} disabled={!marcaOpcion} onChange={(element) => cambioEnModelo(element)}>
                         <option value="">Modelo</option>
                         {getModeloPorMarca(marcaOpcion).map((modelo, index) =>
                             <option value={modelo} key={index}>{modelo}</option>
                         )}
                     </select>
 
-                    <select value={añoOpcion} onChange={(element) => cambioEnAño(element)}>
+                    <select className="selectFiltros" value={añoOpcion} onChange={(element) => cambioEnAño(element)}>
                         <option value="">Año</option>
                         {opciones[0].opcionAño?.sort((a, b) => b - a).map((año, index) =>
                             <option value={año} key={index}>{año}</option>
                         )}
                     </select>
-                    <select value={transmisionOpcion} onChange={cambioEnTransmision}>
+                    <select className="selectFiltros" value={transmisionOpcion} onChange={cambioEnTransmision}>
                         <option value="">Transmision</option>
                         {opciones[0].opcionTransmision.map((transmision, index) =>
                             <option value={transmision} key={index}>{transmision}</option>
                         )}
                     </select>
-                    <br />
-                    <br />
-                    <button onClick={aplicarFiltro}>Buscar</button>
+                    <button className="btnBuscarFiltros" onClick={aplicarFiltro}>Buscar</button>
                 </div>
 
-                <div>
+                <div className="ordernarPor">
                     <h3>Ordenar por:</h3>
                 </div>
 
-                <div className="ordenarPor">
+                <div className="btnOrdenarPor">
                     <div>
-                        <button onClick={() => ordenar('precio')} >Precio </button>
+                        <button className="boton" onClick={() => ordenar('precio')} >Precio </button>
                     </div>
                     <div>
-                        <button onClick={() => ordenar('kilometraje')}>Kilometraje</button>
+                        <button className="boton" onClick={() => ordenar('kilometraje')}>Kilometraje</button>
                     </div>
                     <div>
-                        <button onClick={() => ordenar('año')}>Año</button>
+                        <button className="boton" onClick={() => ordenar('año')}>Año</button>
                     </div>
                 </div>
             </div>
