@@ -32,52 +32,54 @@ function Registro() {
         <div>
             <h1>Regístrate</h1>
             <div className='container-form'>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>
-                        Nombre
-                        <input type="text" name='nombre' onChange={handleChange} value={nuevoUsuario.nombre} placeholder='Nombre' />
-                    </label>
-                    <label>
-                        Apellido
-                        <input type="text" name='apellido' onChange={handleChange} value={nuevoUsuario.apellido} placeholder='Apellido' />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Número de telefono
-                        <p>+56 9</p>
-                        <input type="number" name='numero' onChange={handleChange} value={nuevoUsuario.numero} />
-                    </label>
-                    <label>
-                        Email
-                        <input type="text" name='email' onChange={handleChange} placeholder='Email' value={nuevoUsuario.email} />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Foto
-                        <input type="file" accept='image/*' onChange={handleImageChange} />
-                    </label>
+                <form onSubmit={handleSubmit}>
                     <div>
-                        {nuevoUsuario.imagen && <img src={nuevoUsuario.imagen} alt="Vehículo" className="imagen-nuevoUsuario" />}
+                        <label>
+                            Nombre
+                            <input type="text" name='nombre' onChange={handleChange} value={nuevoUsuario.nombre} placeholder='Nombre' />
+                        </label>
+                        <label>
+                            Apellido
+                            <input type="text" name='apellido' onChange={handleChange} value={nuevoUsuario.apellido} placeholder='Apellido' />
+                        </label>
                     </div>
-                </div>
-                <div>
-                    <label>
-                        Contraseña
-                        <input type="text" name='contraseña' onChange={handleChange} value={nuevoUsuario.contraseña} />
-                    </label>
-                    <label>
-                        Confirmar contraseña
-                        <input type="text" />
-                    </label>
-                    <div className='separador'>
-                        <button type='submit' className=''>Registrarse</button>
+                    <div>
+                        <label >
+                            Número de teléfono
+                            <div className='telefono'>
+                                <p>+56 9</p>
+                                <input type="number" name='numero' onChange={handleChange} value={nuevoUsuario.numero} />
+                            </div>
+                        </label>
+                        <label>
+                            Email
+                            <input type="text" name='email' onChange={handleChange} placeholder='Email' value={nuevoUsuario.email} />
+                        </label>
                     </div>
-                
-                </div>
-            </form>
+                    <div>
+                        <label>
+                            Foto
+                            <input type="file" accept='image/*' onChange={handleImageChange} />
+                        </label>
+                        <div>
+                            {nuevoUsuario.imagen && <img src={nuevoUsuario.imagen} alt="Vehículo" className="imagen-nuevoUsuario" />}
+                        </div>
+                    </div>
+                    <div>
+                        <label>
+                            Contraseña
+                            <input type="text" name='contraseña' onChange={handleChange} value={nuevoUsuario.contraseña} />
+                        </label>
+                        <label>
+                            Confirmar contraseña
+                            <input type="text" />
+                        </label>
+                        <div className='separador'>
+                            <button type='submit' className=''>Registrarse</button>
+                        </div>
+
+                    </div>
+                </form>
             </div>
         </div>
     )
