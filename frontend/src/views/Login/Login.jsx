@@ -12,7 +12,7 @@ function Login() {
         navigate('/')
     }
     return (
-        <div className='container'>
+        <div className='container-1'>
             <div className="login-container">
             <h1>Iniciar Sesión</h1>
             <div className="login-inputs">
