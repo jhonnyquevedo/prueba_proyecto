@@ -1,10 +1,27 @@
 nav{
-    
+    background-color: #76ABAE;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-right: 150px;
-    
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+nav.scrolled {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 .botones{
@@ -16,13 +33,13 @@ nav{
     color: #31363F;
     text-decoration: none;
 }
-    
+
 .active{
-        font-size: 18px;
-        text-decoration: underline;
-        text-decoration-color: blue;
-        text-underline-offset: 7px;
-        text-decoration-thickness: 2px;
+    font-size: 18px;
+    text-decoration: underline;
+    text-decoration-color: #31363F;
+    text-underline-offset: 7px;
+    text-decoration-thickness: 2px;
 }
 
 .boton:hover{
@@ -30,5 +47,29 @@ nav{
 }
 
 
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
 
+    .botones {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        border-top: 1px solid #ddd;
+    }
 
+    .botones.open {
+        display: flex;
+    }
+
+    .boton h6 {
+        font-size: 16px;
+    }
+}
