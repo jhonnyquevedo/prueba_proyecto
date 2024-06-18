@@ -2,6 +2,8 @@
     height: 100vh;
     background-color: #EEEEEE;
     color: #31363F;
+    margin: 0;
+    padding: 0;
 }
 
 .login-container {
