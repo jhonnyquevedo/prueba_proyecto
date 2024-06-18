@@ -1,0 +1,15 @@
+.footer {
+    background-color: #222831;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    position: fixed; /* Fija el footer en la parte inferior */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+}
+
+.footer p {
+    margin: 0; /* Elimina el margen interior */
+    font-size: 14px;
+}

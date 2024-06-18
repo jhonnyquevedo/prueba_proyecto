@@ -1,13 +1,11 @@
 import './Footer.css';
 
 function Footer() {
-
     return (
-        <div>
-            <p> Mi Empresa. Todos los derechos reservados</p>
-        </div>
-        
-    )
+        <footer className="footer">
+            <p>Mi Empresa. Todos los derechos reservados</p>
+        </footer>
+    );
 }
 
-export default Footer
+export default Footer;
