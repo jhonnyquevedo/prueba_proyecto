@@ -1,6 +1,6 @@
 .imagen{
     background-image: url("../../assets/img/vehiculo1.jpg");
-    background-size: 100%;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 700px;
@@ -10,5 +10,13 @@
     align-items: flex-start;
     justify-content: end;
     padding-left: 20px;
+    position: relative;
+}
+
+h1{
+    position: relative;
+}
+
+h4{
     position: relative;
 }
