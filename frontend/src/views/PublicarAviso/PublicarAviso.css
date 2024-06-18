@@ -1,22 +1,29 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+  
+  }
+
+  .container-p{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 10px
+   
   }
   
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
   
   .center {
-    max-width: 700px;
     width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
     background-color: #fff;
-    padding-right: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    box-shadow: #76ABAE 0 0 20px;
   }
   
   .center h1 {
@@ -24,12 +31,16 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 10px;
+  
   }
   
   .form-vehiculo {
-    display: grid;
-    grid-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+   
   }
   
   label {
@@ -43,7 +54,7 @@ body {
   input[type="file"],
   select {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
   }
@@ -51,42 +62,36 @@ body {
   .inline-fields {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 50px;
-    margin-top: 20px;
-    margin-left: 30px;
-    margin-right: 30px;
+    grid-gap: 40px;
+    
   }
   
   textarea {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: vertical; 
+    padding: 40px;
+    border: 2px solid #ccc;
+    border-radius: 100px;
+    height: 150px;
   }
   
   .imagen-vehiculo {
     display: block;
     margin-top: 10px;
-    max-width: 100%;
+    width: 100%;
     height: auto;
     border-radius: 5px;
   }
   
   .boton-publicar {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color:#4C3280;
+    display: flex;
+    background-color: #76ABAE;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
   }
   
   .boton-publicar:hover {
-    background-color: #0cac2e;
+    background-color: #EEEEEE;
   }
   

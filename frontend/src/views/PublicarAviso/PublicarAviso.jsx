@@ -35,7 +35,7 @@ function PublicarAviso() {
   // falta dejar mapeados los select ya que los datos se deben seleccionar 
 
   return (
-    <div className="container">
+    <div className="container-p">
       <div className="center">
         <h1>Información de tu aviso</h1>
         <form onSubmit={handleSubmit} className="form-vehiculo">
