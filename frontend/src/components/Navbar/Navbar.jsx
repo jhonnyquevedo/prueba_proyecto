@@ -33,7 +33,7 @@ function Navbar() {
     <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div>
         <NavLink className={`base ${setActiveClass}`} to="/" exact="true" activeclassname="active-link">
-          <img src={logo} alt="Logo" style={{ width: "200px", height: "100px" }} />
+          <img src={logo} alt="Logo" style={{ width: "100px", height: "100px", marginLeft: "30px" }} />
         </NavLink>
       </div>
 

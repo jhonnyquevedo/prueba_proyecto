@@ -15,6 +15,10 @@ h1 {
     align-items: center;
 }
 
+.boton-MisPublicaciones{
+    border-radius: 15px;
+}
+
 
 .publicaciones-grid {
     display: grid;
@@ -30,6 +34,7 @@ h1 {
     display: flex;
     flex-direction: row;
     gap: 1px;
+    
 }
 
 

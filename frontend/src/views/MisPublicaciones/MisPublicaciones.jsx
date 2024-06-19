@@ -44,9 +44,9 @@ function MisPublicaciones() {
                         <img src={publicacion.imagen} alt={publicacion.titulo} />
                         <h2>{publicacion.titulo}</h2>
                         <div className="botones-container">
-                            <button onClick={() => handleVerDetalle(publicacion.id_publicacion)}>Ver Detalle</button>
-                            <button onClick={() => handleEditar(publicacion.id_publicacion)}>Editar</button>
-                            <button onClick={() => handleEliminar(publicacion.id_publicacion)}>Eliminar</button>
+                            <button className='boton-MisPublicaciones' onClick={() => handleVerDetalle(publicacion.id_publicacion)}>Ver Detalle</button>
+                            <button className='boton-MisPublicaciones' onClick={() => handleEditar(publicacion.id_publicacion)}>Editar</button>
+                            <button className='boton-MisPublicaciones' onClick={() => handleEliminar(publicacion.id_publicacion)}>Eliminar</button>
                         </div>
                     </div>
                 ))}

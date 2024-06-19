@@ -75,7 +75,7 @@ function Registro() {
                             <input type="text" />
                         </label>
                         <div className='separador'>
-                            <button type='submit' className=''>Registrarse</button>
+                            <button className='boton-r' type='submit'>Registrarse</button>
                         </div>
 
                     </div>

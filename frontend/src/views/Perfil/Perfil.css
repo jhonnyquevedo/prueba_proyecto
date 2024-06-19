@@ -1,6 +1,6 @@
 .container {
   height: 100vh;
-  background-color: #EEEEEE;
+  padding-top: 100px;
   color: #31363F;
 }
 
@@ -10,7 +10,7 @@
     padding: 20px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 18px #76ABAE;
   }
   
   .bienvenida {
@@ -29,7 +29,7 @@
     display: flex;
     width: 100px;
     height: 100px;
-    border-radius: 50%;
+    border-radius: 40%;
     margin-right: 20px;
   }
   
@@ -54,9 +54,15 @@
     font-size: 14px;
     margin-right: 10px;
   }
+
+  .boton-icono{
+    border-radius: 15px;
+    width: 150px;
+    height: 70px;
+  }
   
   .boton-editar:hover, .boton-eliminar:hover {
-    background-color: aquamarine;
+    background-color: #31363F;
   }
   
   @media (max-width: 768px) {

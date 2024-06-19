@@ -15,8 +15,13 @@
     background-color: #fff;
     margin: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
    
+   
+}
+
+.boton-k{
+    color: #fff;
+    border-radius: 15px;
 }
 
 .filtrarPor {
@@ -25,6 +30,7 @@
 
 .ordernarPor {
     margin-top: 20px;
+    
 }
 
 .btnOrdenarPor {
@@ -53,24 +59,25 @@
     height: 40px;
     background-color: #f4f4f4; 
     border: 1px solid #ccc; 
-    padding: 10px;
+    padding: 1px;
     font-size: 16px;
-    color: #222831; 
+    color: #273122; 
 }
 
 .btnBuscarFiltros {
     height: 40px;
     margin: 0;
     background-color: #76ABAE; 
-    color: #fff; 
+    color: #fff;
     border: none;
     cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 4px;
+    padding: 1px 20px;
+    border-radius: 15px;
 }
 
 .boton {
     padding: 10px;
+   color: #fff;;
 }
 
 @media (max-width: 425px) {

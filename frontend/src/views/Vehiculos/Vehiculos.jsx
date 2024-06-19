@@ -131,13 +131,13 @@ function Vehiculos() {
 
                 <div className="btnOrdenarPor">
                     <div>
-                        <button className="boton" onClick={() => ordenar('precio')} >Precio </button>
+                        <button className="boton-k" onClick={() => ordenar('precio')} >Precio </button>
                     </div>
                     <div>
-                        <button className="boton" onClick={() => ordenar('kilometraje')}>Kilometraje</button>
+                        <button className="boton-k" onClick={() => ordenar('kilometraje')}>Kilometraje</button>
                     </div>
                     <div>
-                        <button className="boton" onClick={() => ordenar('año')}>Año</button>
+                        <button className="boton-k" onClick={() => ordenar('año')}>Año</button>
                     </div>
                 </div>
             </div>
