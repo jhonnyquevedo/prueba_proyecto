@@ -2,6 +2,7 @@ import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from '../../context/Context';
+import logo from '../../assets/logo/logo.png';
 
 function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
@@ -32,7 +33,7 @@ function Navbar() {
     <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div>
         <NavLink className={`base ${setActiveClass}`} to="/" exact="true" activeclassname="active-link">
-          <img src="https://via.placeholder.com/300" alt="Logo" style={{ width: "80px" }} />
+          <img src={logo} alt="Logo" style={{ width: "200px", height: "100px" }} />
         </NavLink>
       </div>
 
