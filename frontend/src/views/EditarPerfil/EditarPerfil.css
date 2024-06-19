@@ -1,63 +1,135 @@
 .contenedor-editar-perfil {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  margin-top: 50px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 18px #76ABAE;
+}
+
+.contenedor-editar-perfil h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.botones{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.campo {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.imagen-perfil {
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: 4px;
+  object-fit: cover;
+  height: 200px; 
+}
+
+.boton-guardar {
+  background-color: #76ABAE;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 150px; 
+  margin-top: 20px; 
+}
+
+.boton-guardar:hover {
+  background-color: #31363F;
+}
+
+
+
+@media (max-width: 768px) {
+  .contenedor-editar-perfil {
+      padding: 15px;
   }
-  
+
   .contenedor-editar-perfil h1 {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
+      font-size: 22px;
   }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
+
   .campo {
-    margin-bottom: 15px;
+      margin-bottom: 10px;
   }
-  
-  label {
-    font-weight: bold;
-  }
-  
+
   input[type="text"],
   input[type="email"],
   input[type="tel"],
   input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+      font-size: 14px;
   }
-  
+
   .imagen-perfil {
-    max-width: 100%;
-    margin-top: 10px;
-    border-radius: 4px;
-    object-fit: cover;
-    height: 200px; 
+      height: 150px; 
   }
-  
+
   .boton-guardar {
-    background-color: #76ABAE;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    font-size: 18px;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+      font-size: 16px;
+      padding: 10px 15px;
   }
-  
-  .boton-guardar:hover {
-    background-color: #31363F;
+}
+
+@media (max-width: 480px) {
+  .contenedor-editar-perfil {
+      padding: 10px;
   }
-  
+
+  .contenedor-editar-perfil h1 {
+      font-size: 20px;
+  }
+
+  .campo {
+      margin-bottom: 8px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="file"] {
+      font-size: 12px;
+  }
+
+  .imagen-perfil {
+      height: 120px; 
+  }
+
+  .boton-guardar {
+      font-size: 14px;
+      padding: 8px 12px;
+  }
+}

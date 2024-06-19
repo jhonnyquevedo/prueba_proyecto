@@ -1,24 +1,54 @@
-.imagen{
+.containerInicio {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Cambiado a 100vh para ocupar toda la altura de la pantalla */
+    width: 100%; 
+}
+
+.imagen {
     background-image: url("../../assets/img/vehiculo1.jpg");
-    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 700px;
+    background-size: cover;
+    flex: 1; 
     color: white;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: end;
-    padding-left: 20px;
-    position: relative;
-    padding-bottom: 100px;
-}
-
-
-h1{
+    justify-content: flex-end;
+    padding: 50px;
+    margin: 0;
     position: relative;
 }
 
-h4{
-    position: relative;
+h1, h4 {
+    margin: 0; /* Eliminamos el margen predeterminado para evitar problemas de desbordamiento */
+}
+
+@media (max-width: 768px) {
+    .imagen {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 24px; 
+    }
+
+    h4 {
+        font-size: 16px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .imagen {
+        padding: 20px; 
+    }
+
+    h1 {
+        font-size: 20px; 
+    }
+
+    h4 {
+        font-size: 14px; 
+    }
 }

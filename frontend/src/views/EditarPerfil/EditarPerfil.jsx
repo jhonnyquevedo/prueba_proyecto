@@ -42,7 +42,7 @@ function EditarPerfil() {
   return ( 
     <div className="contenedor-editar-perfil">
       <h1>Editar Perfil</h1>
-      <form onSubmit={handleGuardar}>
+      <form className='formularioo' onSubmit={handleGuardar}>
         <div className="campo">
           <label>Nombre</label>
           <input // el nombre y el apellido no se pueden cambiar una vez ingresado el usuario, solo debemos dejar habilitado el cambio para telefono, email y foto
@@ -94,9 +94,11 @@ function EditarPerfil() {
           />
           {usuario.foto && <img src={usuario.foto} alt="Imagen de perfil" className="imagen-perfil" />}
         </div>
+        <div className="botones">
         <button type="submit" className="boton-guardar">
           Guardar
         </button>
+        </div>
       </form>
     </div>
   );

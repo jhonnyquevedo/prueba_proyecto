@@ -5,7 +5,7 @@ import './MisPublicaciones.css';
 function MisPublicaciones() {
     const navigate = useNavigate();
     const [publicaciones, setPublicaciones] = useState([]);
-    const usuarioActual = 1; // Aquí deberías obtener el ID del usuario actual de tu sistema
+    const usuarioActual = 1; 
 
     useEffect(() => {
         obtenerPublicaciones();
@@ -23,7 +23,7 @@ function MisPublicaciones() {
     };
 
     const handleVerDetalle = (idPublicacion) => {
-        navigate(`/detalle/${idPublicacion}`);
+        navigate(`/detalle/${idPublicacion}`, { state: { usuarioActual } });
     };
 
     const handleEditar = (idPublicacion) => {
