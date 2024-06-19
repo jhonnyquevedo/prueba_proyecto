@@ -46,7 +46,7 @@
     },
     {
         "id_usuario": 2,
-        "id_publicacion": 1,
+        "id_publicacion": 4,
         "titulo": "Vendo mi Auto",
         "precio": 10000,
         "marca": "Ford",
@@ -61,7 +61,7 @@
     },
     {
         "id_usuario": 2,
-        "id_publicacion": 2,
+        "id_publicacion": 5,
         "titulo": "Vendo mi Auto",
         "precio": 10000,
         "marca": "Ford",
@@ -76,7 +76,7 @@
     },
     {
         "id_usuario": 3,
-        "id_publicacion": 1,
+        "id_publicacion": 6,
         "titulo": "Vendo mi Auto",
         "precio": 100,
         "marca": "Ford",
@@ -91,7 +91,7 @@
     },
     {
         "id_usuario": 3,
-        "id_publicacion": 2,
+        "id_publicacion": 7,
         "titulo": "Vendo mi Auto",
         "precio": 10,
         "marca": "Ford",
@@ -106,7 +106,7 @@
     },
     {
         "id_usuario": 3,
-        "id_publicacion": 3,
+        "id_publicacion": 8,
         "titulo": "Vendo mi Auto",
         "precio": 100000,
         "marca": "Ford",

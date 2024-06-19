@@ -18,6 +18,8 @@ h1 {
 
 .publicaciones-grid {
     display: grid;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
     align-content: flex-end;
     margin-top: 50px;
@@ -36,6 +38,7 @@ h1 {
         flex-direction: column;
         gap: 20px;
         padding: 15px;
+        margin: 15px;
     }
 
     .publicaciones-grid {
@@ -54,7 +57,8 @@ h1 {
     .publicacion-card {
         flex-direction: column;
         gap: 15px;
-        padding: 10px;
+        margin: 15px;
+        padding: 15px;
     }
 
     .publicaciones-grid {
@@ -73,7 +77,8 @@ h1 {
     .publicacion-card {
         flex-direction: column;
         gap: 10px;
-        padding: 5px;
+        padding: 10px;
+        margin: 10px;
     }
 
     .publicaciones-grid {
