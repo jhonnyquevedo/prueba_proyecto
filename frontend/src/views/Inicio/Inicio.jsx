@@ -5,7 +5,7 @@ import './Inicio.css';
 
 function Inicio() {
     return (
-        <>
+        <div className='containerInicio'>
             <div className="imagen">
                 <h1>tuvehículo.com</h1>
                 <h4>Vende o compra los mejores vehículo nuevos / usados</h4>
@@ -13,7 +13,7 @@ function Inicio() {
             {/* <h1>Este es el inicio</h1>
             <img src={vehiculo} alt="carro" /> */}
 
-        </>
+        </div>
     )
 }
 
