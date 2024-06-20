@@ -5,6 +5,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #EEEEEE;
+   
 }
 
 .login-container {
@@ -34,7 +36,7 @@ input {
     width: 10%;
 }
 
-button {
+.botonLogin {
     padding: 10px 20px;
     margin-bottom: 20px;
     border-color: none;

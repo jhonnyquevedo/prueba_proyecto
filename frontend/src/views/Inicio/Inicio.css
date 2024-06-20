@@ -1,22 +1,26 @@
-.imagen{
+.imagenInicio{
+    
     background-image: url("../../assets/img/vehiculo1.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 700px;
+    min-height: 800px;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: end;
     padding-left: 20px;
+    padding-bottom: 270px;
     position: relative;
 }
 
-h1{
+.h1Inicio{
     position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 
-h4{
+.h4Inicio{
     position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }

@@ -43,6 +43,7 @@ h1 {
 .container-form input[type="text"],
 .container-form input[type="number"],
 .container-form input[type="file"],
+.container-form input[type="email"],
 .container-form input[type="password"] {
     width: calc(100% - 20px);
     padding: 10px;
@@ -101,4 +102,10 @@ h1 {
     .container-form {
         width: 80%;
     }
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
