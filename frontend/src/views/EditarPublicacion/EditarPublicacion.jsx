@@ -65,7 +65,7 @@ function EditarPublicacion() {
     };
 
     return (
-        <div>
+        <div className="container-edit-publicacion">
             <div className="center">
                 <h1>Editar información de tu aviso</h1>
                 <form onSubmit={handleSubmit} className="form-vehiculo">

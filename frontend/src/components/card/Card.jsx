@@ -14,7 +14,7 @@ function Card({ id, imagen, titulo, marca, modelo, año, transmision }) {
                 <p className="card-text">transmision: {transmision}</p>
 
                 <Link to={`/detalle/${id}`} >
-                    <button>Ver detalle</button>
+                    <button className='boton-1'>Ver detalle</button>
                 </Link>
             </div>
         </div>

@@ -1,89 +1,73 @@
+.mis-publicaciones-container {
+    padding: 20px;
+}
 
 h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.publicaciones-grid {
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
 }
 
-
 .publicacion-card {
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-    padding: 10px;
+    width: 300px;
+    background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: #76ABAE 0 0 20px;
-    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
 }
 
-
-.publicaciones-grid {
-    display: grid;
-    gap: 20px;
-    align-content: flex-end;
-    margin-top: 50px;
+.publicacion-card img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
+.publicacion-info {
+    padding: 20px;
+}
+
+.publicacion-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.publicacion-info p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
 
 .botones-container {
     display: flex;
-    flex-direction: row;
-    gap: 1px;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
 }
 
+.boton-MisPublicaciones {
+    padding: 10px 20px;
+    background-color: #76ABAE;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-@media (max-width: 1200px) {
-    .publicacion-card {
-        flex-direction: column;
-        gap: 20px;
-        padding: 15px;
-    }
-
-    .publicaciones-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 15px;
-        margin-top: 40px;
-    }
-
-    .botones-container {
-        flex-direction: column;
-        gap: 5px;
-    }
+.boton-MisPublicaciones:hover {
+    background-color: #31363F;
 }
 
 @media (max-width: 768px) {
     .publicacion-card {
-        flex-direction: column;
-        gap: 15px;
-        padding: 10px;
-    }
-
-    .publicaciones-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        margin-top: 30px;
-    }
-
-    .botones-container {
-        flex-direction: column;
-        gap: 5px;
-    }
-}
-
-@media (max-width: 480px) {
-    .publicacion-card {
-        flex-direction: column;
-        gap: 10px;
-        padding: 5px;
-    }
-
-    .publicaciones-grid {
-        grid-template-columns: 1fr;
-        gap: 5px;
-        margin-top: 20px;
-    }
-
-    .botones-container {
-        flex-direction: column;
-        gap: 3px;
+        width: 100%;
     }
 }

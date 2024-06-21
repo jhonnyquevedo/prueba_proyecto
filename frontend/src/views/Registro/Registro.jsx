@@ -123,7 +123,7 @@ function Registro() {
                             <input type="password" name='confirmarContraseña' onChange={handleChange} value={nuevoUsuario.confirmarContraseña} />
                         </label>
                         <div className='separador'>
-                            <button type='submit' className=''>Registrarse</button>
+                            <button className='boton-r' type='submit'>Registrarse</button>
                         </div>
                         <div className='mensajeRegistro'>
                             {error.length > 0 && <h3 className="error">{error}</h3>}

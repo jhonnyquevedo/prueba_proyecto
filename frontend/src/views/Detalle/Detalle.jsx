@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import './Detalle.css';
 
 function Detalle() {
     const { id } = useParams();
@@ -30,12 +31,14 @@ function Detalle() {
         return <div>Cargando...</div>;
     }
 
+    const esPropietario = vehiculo.id_usuario === usuarioActual;
+
     return (
         <div className="detalleVehiculo">
             <h1>{vehiculo.titulo}</h1>
             <img src={vehiculo.imagen} alt={vehiculo.titulo} />
 
-            <div>
+            <div className="infoVehiculo">
                 <h2>Precio: {vehiculo.precio}</h2>
                 <p>Estado: {vehiculo.estado}</p>
                 <p>Marca: {vehiculo.marca}</p>
@@ -47,7 +50,7 @@ function Detalle() {
                 <p>Descripción: {vehiculo.descripcion}</p>
             </div>
 
-            {vehiculo.id_usuario !== usuarioActual && (
+            {!esPropietario && (
                 <button onClick={() => contactarVendedor(vehiculo.id_publicacion)}>Contactar al vendedor</button>
             )}
         </div>
