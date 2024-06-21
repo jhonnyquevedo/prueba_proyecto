@@ -3,6 +3,7 @@ import './Inicio.css';
 
 function Inicio() {
     return (
+
         <div className='containerInicio'>
             <div className="imagen">
                 <h1>Bienvenido a Austral Autos</h1>

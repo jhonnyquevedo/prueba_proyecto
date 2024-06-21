@@ -1,3 +1,4 @@
+
 .containerInicio {
     display: flex;
     flex-direction: column;
@@ -9,12 +10,17 @@
     background-image: url("../../assets/img/vehiculo1.jpg");
     background-position: center;
     background-repeat: no-repeat;
+
+
+
     background-size: cover;
     flex: 1; 
+
     color: white;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     justify-content: flex-end;
     padding: 50px;
     margin: 0;
