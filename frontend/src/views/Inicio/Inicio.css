@@ -4,6 +4,7 @@
     flex-direction: column;
     height: 100vh; /* Cambiado a 100vh para ocupar toda la altura de la pantalla */
     width: 100%; 
+    padding: 30px;
 }
 
 .imagen {
@@ -11,7 +12,7 @@
     background-position: center 40px;
 
     background-repeat: no-repeat;
-    background-size: 60% ;
+    background-size: 70%;
     flex: 1; 
     color: black;
     display: flex;
@@ -20,7 +21,7 @@
     margin: 0;
     position: relative;
     justify-content: flex-end;
-    padding: 160px;
+    padding: 130px;
     
 }
 

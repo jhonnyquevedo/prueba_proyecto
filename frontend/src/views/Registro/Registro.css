@@ -1,116 +1,136 @@
-.container-form {
-    display: flex;
-    width: 700px;
-    margin: 30px auto;
-    padding: 30px;
+.contenedor-registro{
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 10px;
     box-shadow: 0 1px 18px #76ABAE;
-}
-
-h1 {
-    padding-top: 50px;
+  }
+  
+  .titulo-registro {
+    font-size: 24px;
     text-align: center;
-}
-
-.telefono{
+    margin-bottom: 20px;
+  }
+  
+  .boton-registro{
     display: flex;
-    width: 95%;
-}
-
-.telefono>p{
-    width: 20%;
-    display: flex;
+    justify-content: center;
     align-items: center;
-    margin: 0;
-}
-
-.container-form h1 {
-    text-align: center;
-    color: #333;
-    margin-top: 20px;
-}
-
-.container-form form {
-    width: 100%;
-}
-
-.container-form label {
-    margin-bottom: 10px;
+  }
+  
+  
+  .formulario-registro {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-}
-
-.container-form input[type="text"],
-.container-form input[type="number"],
-.container-form input[type="file"],
-.container-form input[type="email"],
-.container-form input[type="password"] {
-    width: calc(100% - 20px);
+    width: 100%;
+  }
+  
+  .campo-registro {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+ .label-registro {
+    margin-bottom: 5px;
+  }
+  
+  .input-registro[type="text"],
+  .input-registro[type="email"],
+  .input-registro[type="tel"],
+  .input-registrot[type="file"] {
+    width: 100%;
     padding: 10px;
-    margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-}
-
-.container-form input[type="file"] {
-    width: auto;
-}
-
-.imagen-nuevoUsuario {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
+  }
+  
+  .imagen-registro {
+    max-width: 100%;
     margin-top: 10px;
-}
-
-
-.container-form button {
-    padding: 10px 20px;
-    margin-top: 20px;
+    border-radius: 4px;
+    object-fit: cover;
+    height: 200px; 
+  }
+  
+  .boton-guardar-registro {
     background-color: #76ABAE;
     color: #fff;
     border: none;
+    padding: 12px 20px;
+    font-size: 18px;
     border-radius: 15px;
-    font-size: 16px;
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-evenly;
-}
-
-.separador {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-boton-r{
-    color: #fff;
-}
-
-
-.container-form button:hover {
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 150px; 
+    margin-top: 20px; 
+  }
+  
+  .boton-guardar-registro :hover {
     background-color: #31363F;
-}
-
-@media (max-width: 425px) {
-    .container-form {
-        width: 90%;
+  }
+  
+  
+  
+  @media (max-width: 768px) {
+    .contenedor-editar-perfil {
+        padding: 15px;
     }
-}
-
-@media (max-width: 768px) {
-    .container-form {
-        width: 80%;
+  
+    .contenedor-editar-perfil h1 {
+        font-size: 22px;
     }
-}
-
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+  
+    .campo {
+        margin-bottom: 10px;
+    }
+  
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="file"] {
+        font-size: 14px;
+    }
+  
+    .imagen-perfil {
+        height: 150px; 
+    }
+  
+    .boton-guardar {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contenedor-editar-perfil {
+        padding: 10px;
+    }
+  
+    .contenedor-editar-perfil h1 {
+        font-size: 20px;
+    }
+  
+    .campo {
+        margin-bottom: 8px;
+    }
+  
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="file"] {
+        font-size: 12px;
+    }
+  
+    .imagen-perfil {
+        height: 120px; 
+    }
+  
+    .boton-guardar {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+  }
+  

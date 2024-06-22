@@ -16,7 +16,7 @@ function Registro() {
     const [nuevoUsuario, setNuevoUsuario] = useState({
         nombre: '',
         apellido: '',
-        numero: '',
+        telefono: '+56',
         email: '',
         imagen: null,
         contraseña: '',
@@ -26,9 +26,24 @@ function Registro() {
 
 
     const handleChange = (event) => {
+
         const { name, value } = event.target;
+    if (name === 'telefono') {
+      if (value.startsWith('+56 ')) {
+        if (value.length <= 13) {
+            setNuevoUsuario({ ...nuevoUsuario, telefono: value });
+        }
+      } else if (value.startsWith('+56')) {
+        setNuevoUsuario({ ...nuevoUsuario, telefono: '+56 ' });
+      }
+    } else {
         setNuevoUsuario({ ...nuevoUsuario, [name]: value });
-    };
+    }
+  };
+
+        
+        
+    
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -48,7 +63,7 @@ function Registro() {
         } if (nuevoUsuario.apellido === "") {
             setError("Ingrese su apellido")
             return
-        } if (nuevoUsuario.numero === "") {
+        } if (nuevoUsuario.telefono === "") {
             setError("Ingrese su numero")
             return
         } if (nuevoUsuario.email === "") {
@@ -77,65 +92,67 @@ function Registro() {
 
 
     return (
-        <div>
-            <h1>Regístrate</h1>
-            <div className='container-form'>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>
-                            Nombre
-                            <input type="text" name='nombre' onChange={handleChange} value={nuevoUsuario.nombre} placeholder='Nombre' />
-                        </label>
-                        <label>
-                            Apellido
-                            <input type="text" name='apellido' onChange={handleChange} value={nuevoUsuario.apellido} placeholder='Apellido' />
-                        </label>
-                    </div>
-                    <div>
-                        <label >
-                            Número de teléfono
-                            <div className='telefono'>
-                                <p>+56 9</p>
-                                <input type="number" name='numero' onChange={handleChange} value={nuevoUsuario.numero} />
-                            </div>
-                        </label>
-                        <label>
-                            Email
-                            <input type="email" name='email' onChange={handleChange} placeholder='Email' value={nuevoUsuario.email} />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Foto
-                            <input type="file" accept='image/*' onChange={handleImageChange} />
-                        </label>
-                        <div>
-                            {nuevoUsuario.imagen && <img src={nuevoUsuario.imagen} alt="Vehículo" className="imagen-nuevoUsuario" />}
-                        </div>
-                    </div>
-                    <div>
-                        <label>
-                            Contraseña
-                            <input type="password" name='contraseña' onChange={handleChange} value={nuevoUsuario.contraseña} />
-                        </label>
-                        <label>
-                            Confirmar contraseña
-                            <input type="password" name='confirmarContraseña' onChange={handleChange} value={nuevoUsuario.confirmarContraseña} />
-                        </label>
-                        <div className='separador'>
-                            <button className='boton-r' type='submit'>Registrarse</button>
-                        </div>
-                        <div className='mensajeRegistro'>
-                            {error.length > 0 && <h3 className="error">{error}</h3>}
-                            {succes.length > 0 && <h3 className="succes">{succes}</h3>}
-                        </div>
-                    </div>
-                </form>
-
-
-            </div>
+        <div className="contenedor-registro">
+      <h1 className="titulo-registro">Registro de usuario</h1>
+      <form className='formulario-registro' onSubmit={handleSubmit}>
+        <div className="campo-registro">
+          <label className='label-registro'>Nombre</label>
+          <input className='input-registro'
+            type="text"
+            name="nombre"
+            value={nuevoUsuario.nombre}
+            onChange={handleChange}
+            required
+          />
         </div>
-
+        <div className="campo-registro">
+          <label className='label-registro'>Apellido</label>
+          <input className='input-registro'
+            type="text"
+            name="apellido"
+            value={nuevoUsuario.apellido}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="campo-registro">
+          <label className='label-registro'>Email</label>
+          <input className='input-registro'
+            type="email"
+            name="email"
+            value={nuevoUsuario.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="campo-registro">
+          <label className='label-registro'>Teléfono</label>
+          <input className='input-registro'
+            type="tel"
+            name="telefono"
+            value={nuevoUsuario.telefono}
+            onChange={handleChange}
+            pattern="^\+56\s\d{9}$" 
+            title="Debe empezar con +56 seguido de 9 dígitos"
+            required
+          />
+        </div>
+        <div className="campo-registro">
+          <label className='label-registro'>Imagen de perfil</label>
+          <input className='input-registro'
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+          {nuevoUsuario.foto && <img src={nuevoUsuario.foto} alt="Imagen de perfil" className="imagen-registro" />}
+        </div>
+        <div className="boton-registro">
+        <button type="submit" className="boton-guardar-registro">
+          Guardar
+        </button>
+        </div>
+      </form>
+    </div>
     )
 
 
