@@ -1,7 +1,15 @@
-button{
+.botonCard{
     background-color: #76ABAE;
     color: #222831;
+    border-radius: 30px;
+    width: 100px;
+    border: none;
 }
+<<<<<<< HEAD
+
+.botonCard :hover{
+    background-color: aquamarine;
+=======
 .boton-1{
     color: #fff;
     border-radius: 15px;
@@ -9,6 +17,7 @@ button{
 button :hover{
    background-color: #31363F;
     
+>>>>>>> upstream/main
 }
 
 

@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import './Detalle.css';
+import { GiGearStick } from "react-icons/gi";
+import { MdOutlineAttachMoney } from "react-icons/md";
+import { MdOutlineWatchLater } from "react-icons/md";
+import { IoPricetagsOutline } from "react-icons/io5";
+import { HiOutlineCalendarDays } from "react-icons/hi2";
+import { LiaTachometerAltSolid } from "react-icons/lia";
+import { IoLogoModelS } from "react-icons/io";
+import { LiaClipboardListSolid } from "react-icons/lia";
 
 function Detalle() {
     const { id } = useParams();
@@ -36,18 +44,29 @@ function Detalle() {
     return (
         <div className="detalleVehiculo">
             <h1>{vehiculo.titulo}</h1>
-            <img src={vehiculo.imagen} alt={vehiculo.titulo} />
+            <div className="detalleVehiculo2">
+                <img  src={vehiculo.imagen} alt={vehiculo.titulo} />
 
-            <div className="infoVehiculo">
-                <h2>Precio: {vehiculo.precio}</h2>
-                <p>Estado: {vehiculo.estado}</p>
-                <p>Marca: {vehiculo.marca}</p>
-                <p>Modelo: {vehiculo.modelo}</p>
-                <p>Año: {vehiculo.año}</p>
-                <p>Kilometraje: {vehiculo.kilometraje}</p>
-                <p>Transmisión: {vehiculo.transmision}</p>
-                <p>Categoría: {vehiculo.categoria}</p>
-                <p>Descripción: {vehiculo.descripcion}</p>
+                <div>
+                    <h2> <MdOutlineAttachMoney className='iconoDetalle'/>  Precio: {vehiculo.precio}</h2>
+                    <hr />
+                    <p><b> <MdOutlineWatchLater className='iconoDetalle' />  Estado:</b> {vehiculo.estado}</p>
+                    <hr />
+                    <p><b> <LiaClipboardListSolid className='iconoDetalle' />  Categoría:</b> {vehiculo.categoria}</p>
+                    <hr />
+                    <p><b> <IoPricetagsOutline className='iconoDetalle' />  Marca:</b> {vehiculo.marca}</p>
+                    <hr />
+                    <p><b> <IoLogoModelS className='iconoDetalle' />  Modelo:</b> {vehiculo.modelo}</p>
+                    <hr />
+                    <p><b> <HiOutlineCalendarDays className='iconoDetalle' />  Año:</b> {vehiculo.año}</p>
+                    <hr />
+                    <p><b> <LiaTachometerAltSolid className='iconoDetalle' />  Kilometraje:</b> {vehiculo.kilometraje}</p>
+                    <hr />
+                    <p><b> <GiGearStick className='iconoDetalle' /> Transmisión: </b>{vehiculo.transmision}</p>
+                    <hr />
+                    
+                    <p><b>Descripción:</b> {vehiculo.descripcion}</p>
+                </div>
             </div>
 
             {!esPropietario && (
