@@ -51,6 +51,7 @@ function EditarPerfil() {
             value={usuario.nombre}
             onChange={handleChange}
             required
+            disabled
           />
         </div>
         <div className="campo">
@@ -61,6 +62,7 @@ function EditarPerfil() {
             value={usuario.apellido}
             onChange={handleChange}
             required
+            disabled
           />
         </div>
         <div className="campo">
