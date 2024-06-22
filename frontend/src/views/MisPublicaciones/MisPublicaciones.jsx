@@ -5,7 +5,7 @@ import './MisPublicaciones.css';
 function MisPublicaciones() {
     const navigate = useNavigate();
     const [publicaciones, setPublicaciones] = useState([]);
-    const usuarioActual = 1; // Aquí deberías obtener el ID del usuario actual de tu sistema
+    const usuarioActual = 1; 
 
     useEffect(() => {
         obtenerPublicaciones();
@@ -23,7 +23,7 @@ function MisPublicaciones() {
     };
 
     const handleVerDetalle = (idPublicacion) => {
-        navigate(`/detalle/${idPublicacion}`);
+        navigate(`/detalle/${idPublicacion}`, { state: { usuarioActual } });
     };
 
     const handleEditar = (idPublicacion) => {
@@ -44,9 +44,9 @@ function MisPublicaciones() {
                         <img src={publicacion.imagen} alt={publicacion.titulo} />
                         <h2>{publicacion.titulo}</h2>
                         <div className="botones-container">
-                            <button onClick={() => handleVerDetalle(publicacion.id_publicacion)}>Ver Detalle</button>
-                            <button onClick={() => handleEditar(publicacion.id_publicacion)}>Editar</button>
-                            <button onClick={() => handleEliminar(publicacion.id_publicacion)}>Eliminar</button>
+                            <button className='boton-MisPublicaciones' onClick={() => handleVerDetalle(publicacion.id_publicacion)}>Ver Detalle</button>
+                            <button className='boton-MisPublicaciones' onClick={() => handleEditar(publicacion.id_publicacion)}>Editar</button>
+                            <button className='boton-MisPublicaciones' onClick={() => handleEliminar(publicacion.id_publicacion)}>Eliminar</button>
                         </div>
                     </div>
                 ))}

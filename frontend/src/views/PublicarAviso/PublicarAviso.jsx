@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './PublicarAviso.css';
 
+const formatNumber = (num) => {
+  return num.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
+
 function PublicarAviso() {
   const [vehiculo, setVehiculo] = useState({
     titulo: '',
@@ -18,7 +22,16 @@ function PublicarAviso() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setVehiculo({ ...vehiculo, [name]: value });
+
+    // Si el campo es 'precio', elimina los puntos para que se pueda formatear correctamente
+    if (name === 'precio' || name === 'kilometros') {
+      const rawValue = value.replace(/\./g, '');
+      if (!isNaN(Number(rawValue))) {
+        setVehiculo({ ...vehiculo, [name]: formatNumber(rawValue) });
+      }
+    } else {
+      setVehiculo({ ...vehiculo, [name]: value });
+    }
   };
 
   const handleImageChange = (event) => {
@@ -28,6 +41,13 @@ function PublicarAviso() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Validación adicional para el campo "estado"
+    if (vehiculo.estado === '') {
+      alert('Por favor, selecciona el estado del vehículo (Nuevo o Usado).');
+      return;
+    }
+
     console.log('Datos del vehículo:', vehiculo);
     alert('Datos enviados exitosamente. Revisa la consola para ver los datos.');
   };
@@ -68,6 +88,7 @@ function PublicarAviso() {
                 onChange={handleChange}
                 required
               >
+                <option value="">Seleccione</option>
                 <option value="nuevo">Nuevo</option>
                 <option value="usado">Usado</option>
               </select>

@@ -1,100 +1,117 @@
-body {
-    font-family: Arial, sans-serif;
-  
+.container-p {
+  padding: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.center {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: #76ABAE 0 0 20px;
+}
+
+.center h1 {
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.form-vehiculo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+}
+
+.inline-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+}
+
+textarea {
+  width: 100%;
+  padding: 40px;
+  border: 2px solid #ccc;
+  border-radius: 100px;
+  height: 150px;
+}
+
+.imagen-vehiculo {
+  display: block;
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.boton-publicar {
+  display: flex;
+  background-color: #76ABAE;
+  color: #fff;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  border-radius: 15px;
+}
+
+.boton-publicar:hover {
+  background-color: #31363F;
+}
+
+
+@media (max-width: 1200px) {
+  .center {
+      width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .center {
+      width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .center {
+      width: 100%;
+      padding: 5px; 
   }
 
-  .container-p{
-    margin: 0;
-    padding: 30px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-   
-  }
-  
-  
-  .center {
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 30px;
-    box-shadow: #76ABAE 0 0 20px;
-  }
-  
-  .center h1 {
-    text-align: center;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  
-  }
-  
-  .form-vehiculo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 10px;
-   
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  textarea,
-  input[type="file"],
-  select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .inline-fields {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 40px;
-    
-  }
-  
   textarea {
-    width: 100%;
-    padding: 40px;
-    border: 2px solid #ccc;
-    border-radius: 100px;
-    height: 150px;
+      padding: 20px; 
   }
-  
+
   .imagen-vehiculo {
-    display: block;
-    margin-top: 10px;
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+      margin-top: 5px; 
   }
-  
-  .boton-publicar {
-    display: flex;
-    background-color: #76ABAE;
-    color: #fff;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .boton-publicar:hover {
-    background-color: #EEEEEE;
-  }
-  
+}

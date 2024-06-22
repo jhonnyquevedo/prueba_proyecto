@@ -6,10 +6,10 @@
     color: #ffffff;
     text-align: center;
     padding: 20px;
-    position: fixed; /* Fija el footer en la parte inferior */
+    position: fixed; 
     bottom: 0;
     left: 0;
-    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    width: 100%; 
 }
 
 .iconosFooter{
@@ -25,6 +25,6 @@
 }
 
 .footer p {
-    margin: 0; /* Elimina el margen interior */
+    margin: 0; 
     font-size: 14px;
 }

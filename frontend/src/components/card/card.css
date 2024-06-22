@@ -5,15 +5,22 @@
     width: 100px;
     border: none;
 }
+<<<<<<< HEAD
 
 .botonCard :hover{
     background-color: aquamarine;
+=======
+.boton-1{
+    color: #fff;
+    border-radius: 15px;
+}
+button :hover{
+   background-color: #31363F;
+    
+>>>>>>> upstream/main
 }
 
-.card-body{
-    color: #222831;
-}
 
 .card-img-top{
-    height: 300px;
+    height: 200px;
 }
