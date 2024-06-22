@@ -8,7 +8,7 @@ function Footer() {
     return (
         <footer className="footer">
             <div className='textoFooter'>
-                <p>Mi Empresa. Todos los derechos reservados</p>
+                <p>Austral Autos. Todos los derechos reservados</p>
             </div>
             <div className='iconosFooter'>
                 <FaSquareFacebook />

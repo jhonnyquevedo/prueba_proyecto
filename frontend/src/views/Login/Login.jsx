@@ -55,12 +55,12 @@ function Login() {
 
     return (
         <div className='container-1'>
-            <form onSubmit={handleSubmit}>
+            <form className='formLogin' onSubmit={handleSubmit}>
                 <div className="login-container">
                     <h1>Iniciar Sesión</h1>
                     <div className="login-inputs">
-                        <input type="email" name='email' placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} style={{ width: '200px' }} />
-                        <input type="password" name='contraseña' placeholder="Contraseña" value={contraseña} onChange={(e) => setContraseña(e.target.value)} style={{ width: '200px' }} />
+                        <input type="email" name='email' placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}  />
+                        <input type="password" name='contraseña' placeholder="Contraseña" value={contraseña} onChange={(e) => setContraseña(e.target.value)}  />
                     </div>
                     <button className='botonLogin' type='submit'  /* onClick={handleLogin} */>Ingresar</button>
                     <div className="register-link">

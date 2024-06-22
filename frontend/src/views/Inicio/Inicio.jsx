@@ -4,13 +4,12 @@ import './Inicio.css';
 function Inicio() {
     return (
 
-        <div className='containerInicio'>
-            <div className="imagen">
-                <h1>Bienvenido a Austral Autos</h1>
-                <h4>Compra y vende vehículos nuevos y usados con confianza. ¡Explora nuestro inventario o vende tu auto hoy mismo!</h4>
+                <div className='containerInicio'>
+                    <h1 className='bienvenida'>Bienvenido a Austral Autos</h1>
+                    <div className="imagen">
+                        <h4 className='sub-bienvenida'>Compra y vende vehículos nuevos y usados con confianza. ¡Explora nuestro inventario o vende tu auto hoy mismo!</h4>
+                        </div>
             </div>
-
-        </div>
     )
 }
 

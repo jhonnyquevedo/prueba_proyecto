@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #EEEEEE;
+    
    
 }
 
@@ -17,6 +17,7 @@
     height: 400px;
     width: 400px;
     background-color: white;
+    box-shadow: 0 1px 18px #76ABAE;
 }
 
 .login-inputs {
@@ -24,6 +25,7 @@
     flex-direction: column;
     margin-bottom: 20px;
     background-color: white;
+    width: 200px;
 }
 
 .login-inputs input {
@@ -44,12 +46,11 @@ input {
     color: #EEEEEE;
     border: none;
     width: 150px;
+    border-radius: 30px;
 }
 
-.boton{
-    border-radius: 15px;
+
     
-}
 
 button:hover {
     background-color: #31363F;
@@ -68,4 +69,12 @@ button:hover {
 .register-link a {
     text-decoration: none;
     color: #76ABAE;
+}
+
+.formLogin{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding-top: 50px;
 }
