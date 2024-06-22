@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import './Detalle.css';
 
 function Detalle() {
     const { id } = useParams();
@@ -33,22 +34,25 @@ function Detalle() {
     return (
         <div className="detalleVehiculo">
             <h1>{vehiculo.titulo}</h1>
-            <img src={vehiculo.imagen} alt={vehiculo.titulo} />
+            <div className="detalleVehiculo2">
+                <img src={vehiculo.imagen} alt={vehiculo.titulo} />
 
-            <div>
-                <h2>Precio: {vehiculo.precio}</h2>
-                <p>Estado: {vehiculo.estado}</p>
-                <p>Marca: {vehiculo.marca}</p>
-                <p>Modelo: {vehiculo.modelo}</p>
-                <p>Año: {vehiculo.año}</p>
-                <p>Kilometraje: {vehiculo.kilometraje}</p>
-                <p>Transmisión: {vehiculo.transmision}</p>
-                <p>Categoría: {vehiculo.categoria}</p>
-                <p>Descripción: {vehiculo.descripcion}</p>
+                <div>
+                    <h2>Precio: {vehiculo.precio}</h2>
+                    <p><b>Estado:</b> {vehiculo.estado}</p>
+                    <p><b>Marca:</b> {vehiculo.marca}</p>
+                    <p><b>Modelo:</b> {vehiculo.modelo}</p>
+                    <p><b>Año:</b> {vehiculo.año}</p>
+                    <p><b>Kilometraje:</b> {vehiculo.kilometraje}</p>
+                    <p><b>Transmisión: </b>{vehiculo.transmision}</p>
+                    <p><b>Categoría:</b> {vehiculo.categoria}</p>
+                    <p><b>Descripción:</b> {vehiculo.descripcion}</p>
+                </div>
+
             </div>
 
             {vehiculo.id_usuario !== usuarioActual && (
-                <button onClick={() => contactarVendedor(vehiculo.id_publicacion)}>Contactar al vendedor</button>
+                <button className='botonDetalle' onClick={() => contactarVendedor(vehiculo.id_publicacion)}>Contactar al vendedor</button>
             )}
         </div>
     );

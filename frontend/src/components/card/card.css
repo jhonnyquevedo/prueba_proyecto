@@ -1,9 +1,12 @@
-button{
+.botonCard{
     background-color: #76ABAE;
     color: #222831;
+    border-radius: 30px;
+    width: 100px;
+    border: none;
 }
 
-button :hover{
+.botonCard :hover{
     background-color: aquamarine;
 }
 

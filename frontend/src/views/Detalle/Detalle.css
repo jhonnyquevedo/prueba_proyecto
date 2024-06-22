@@ -1,0 +1,22 @@
+.detalleVehiculo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    height: 100%;
+}
+
+.detalleVehiculo2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.botonDetalle{
+    width: 180px;
+    border: none;
+    border-radius: 30px;
+    background-color: #76ABAE;
+}
