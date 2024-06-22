@@ -26,8 +26,16 @@ function Registro() {
 
 
     const handleChange = (event) => {
+      const { name, value } = event.target;
 
-        const { name, value } = event.target;
+      if (name === 'nombre' || name === 'apellido') {
+        const regexSoloLetras = /^[a-zA-Z\s]*$/;
+        if (!regexSoloLetras.test(value)) {
+            setError("Solo se permiten letras en los campos de nombre y apellido");
+            return;
+        }
+    }
+
     if (name === 'telefono') {
       if (value.startsWith('+56 ')) {
         if (value.length <= 13) {
