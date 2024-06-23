@@ -9,7 +9,7 @@ function PublicarAviso() {
   const [vehiculo, setVehiculo] = useState({
     titulo: '',
     precio: '',
-    estado: '', 
+    estado: '',
     marca: '',
     modelo: '',
     año: '',
@@ -55,134 +55,137 @@ function PublicarAviso() {
   // falta dejar mapeados los select ya que los datos se deben seleccionar 
 
   return (
-    <div className="container-p">
-      <div className="center">
-        <h1>Información de tu aviso</h1>
-        <form onSubmit={handleSubmit} className="form-vehiculo">
-          <label>
-            Título
-            <input
+
+    <div className="container-publicar-aviso">
+      <h1 className='titulo-publicar-aviso'>Información de tu aviso</h1>
+      <form onSubmit={handleSubmit} className="formulario-publicar">
+        <label className="label-publicar-aviso">
+          Título
+          <input className='input-publicar-aviso'
+            type="text"
+            name="titulo"
+            value={vehiculo.titulo}
+            onChange={handleChange}
+            required
+          />
+        </label >
+        <div className="inline-fields">
+          <label className="label-publicar-aviso">
+            Precio
+            <input className='input-publicar-aviso'
               type="text"
-              name="titulo"
-              value={vehiculo.titulo}
+              name="precio"
+              value={vehiculo.precio}
               onChange={handleChange}
               required
             />
           </label>
-          <div className="inline-fields">
-            <label>
-              Precio
-              <input
-                type="text"
-                name="precio"
-                value={vehiculo.precio}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Estado
-              <select
-                name="estado"
-                value={vehiculo.estado}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Seleccione</option>
-                <option value="nuevo">Nuevo</option>
-                <option value="usado">Usado</option>
-              </select>
-            </label>
-          </div>
-          <div className="inline-fields">
-            <label>
-              Marca
-              <input
-                type="text"
-                name="marca"
-                value={vehiculo.marca}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Modelo
-              <input
-                type="text"
-                name="modelo"
-                value={vehiculo.modelo}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          </div>
-          <div className="inline-fields">
-            <label>
-              Año
-              <input
-                type="number"
-                name="año"
-                value={vehiculo.año}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Kilómetros
-              <input
-                type="text"
-                name="kilometros"
-                value={vehiculo.kilometros}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          </div>
-          <div className="inline-fields">
-            <label>
-              Transmisión
-              <input
-                type="text"
-                name="transmision"
-                value={vehiculo.transmision}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Categoría
-              <input
-                type="text"
-                name="categoria"
-                value={vehiculo.categoria}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          </div>
-          <label>
-            Descripción
-            <textarea
-              name="descripcion"
-              value={vehiculo.descripcion}
+          <label className="label-publicar-aviso">
+            Estado
+            <select
+              name="estado"
+              value={vehiculo.estado}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Seleccione</option>
+              <option value="nuevo">Nuevo</option>
+              <option value="usado">Usado</option>
+            </select>
+          </label >
+        </div>
+        <div className="inline-fields">
+          <label className="label-publicar-aviso">
+            Marca
+            <input className='input-publicar-aviso'
+              type="text"
+              name="marca"
+              value={vehiculo.marca}
               onChange={handleChange}
               required
             />
           </label>
-          <label>
-            Imagen
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
+          <label className="label-publicar-aviso">
+            Modelo
+            <input className='input-publicar-aviso'
+              type="text"
+              name="modelo"
+              value={vehiculo.modelo}
+              onChange={handleChange}
               required
             />
           </label>
-          {vehiculo.imagen && <img src={vehiculo.imagen} alt="Vehículo" className="imagen-vehiculo" />}
-          <button type="submit" className="boton-publicar">Publicar</button>
-        </form>
+        </div>
+        <div className="inline-fields">
+          <label className="label-publicar-aviso">
+            Año
+            <input className='input-publicar-aviso'
+              type="number"
+              name="año"
+              value={vehiculo.año}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label className="label-publicar-aviso">
+            Kilómetros
+            <input className='input-publicar-aviso'
+              type="text"
+              name="kilometros"
+              value={vehiculo.kilometros}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+        <div className="inline-fields">
+          <label className="label-publicar-aviso">
+            Transmisión
+            <input className='input-publicar-aviso'
+              type="text"
+              name="transmision"
+              value={vehiculo.transmision}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label className="label-publicar-aviso">
+            Categoría
+            <input className='input-publicar-aviso'
+              type="text"
+              name="categoria"
+              value={vehiculo.categoria}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+        <label className="label-publicar-aviso">
+          Descripción
+          <textarea
+            name="descripcion"
+            value={vehiculo.descripcion}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label className="label-publicar-aviso">
+          Imagen
+          <input className='input-publicar-aviso'
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            required
+          />
+        </label>
+        {vehiculo.imagen && <img src={vehiculo.imagen} alt="Vehículo" className="imagen-publicar-aviso" />}
+      </form>
+
+      <div className='btn-publicar'>
+        <button type="submit" className="boton-publicar-aviso">Publicar</button>
       </div>
     </div>
+
   );
 }
 
