@@ -1,109 +1,211 @@
-import React, { useState } from 'react';
-import './EditarPerfil.css';
+import './EditarPerfil.css'
+import { useState } from 'react'
 
 function EditarPerfil() {
 
-  // aqui debemos hacer la logica de recibir el token con estos datos, validarlo, y es o que tenemos que setear en el estado de usuario
-  const [usuario, setUsuario] = useState({
+  //Expresión regular para validar que el campo de email contenga el formato adecuado
+  const regexParaEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+  //Expresión regular para validar el campo de contraseña solicita un mínimo de 8 caracteres y un máximo de 15 , al menos una letra minúscula, al menos una letra mayúscula, al menos 1 dígito (número), al menos 1 caracter especial, que no existan espacios en blanco y al menos 1 símbolo para más seguridad fuente https://es.stackoverflow.com/questions/4300/expresiones-regulares-para-contrase%C3%B1a-en-base-a-una-politica.
+  const regexPas = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.-])[A-Za-z\d$@$!%*?&.-]{8,15}$/;
+
+  const [error, setError] = useState("")
+  const [succes, setSucces] = useState("")
+
+  //falta hacer las validaciones con regex para email y contraseña
+  const [nuevoUsuario, setNuevoUsuario] = useState({
     nombre: 'Juan',
-    apellido: 'Pérez',
-    email: 'juan.perez@example.com',
-    telefono: '+56 ',
-    foto: null
-  });
+    apellido: 'Perez',
+    telefono: '',
+    email: '',
+    imagen: null,
+    contraseña: '',
+    confirmarContraseña: ''
+  })
+
+
+
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     if (name === 'telefono') {
-      if (value.startsWith('+56 ')) {
-        if (value.length <= 13) {
-          setUsuario({ ...usuario, telefono: value });
+      if (value.startsWith('')) {
+        if (value.length <= 9) {
+          setNuevoUsuario({ ...nuevoUsuario, telefono: value });
         }
-      } else if (value.startsWith('+56')) {
-        setUsuario({ ...usuario, telefono: '+56 ' });
+      } else if (value.startsWith('')) {
+        setNuevoUsuario({ ...nuevoUsuario, telefono: '' });
       }
     } else {
-      setUsuario({ ...usuario, [name]: value });
+      setNuevoUsuario({ ...nuevoUsuario, [name]: value });
     }
   };
 
+
+
+
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    setUsuario({ ...usuario, foto: URL.createObjectURL(file) });
+    setNuevoUsuario({ ...nuevoUsuario, imagen: URL.createObjectURL(file) });
   };
 
-  const handleGuardar = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    // Aquí pondremos el codigo para guardar los cambios
-    console.log('Guardar cambios:', usuario);
-    alert('Los cambios han sido guardados exitosamente.');
-  };
 
-  return ( 
+    //Se elimina el mensaje de succes
+    setSucces("")
+
+    // Se validan los input
+    if (nuevoUsuario.nombre === "") {
+      setError("Ingrese su nombre")
+      return
+    } if (nuevoUsuario.apellido === "") {
+      setError("Ingrese su apellido")
+      return
+    } if (nuevoUsuario.telefono === "") {
+      setError("Ingrese su numero")
+      return
+    } if (nuevoUsuario.email === "") {
+      setError("Ingrese su email")
+      return
+    } if (!regexParaEmail.test(nuevoUsuario.email)) {
+      setError("Ingrese un email válido")
+      return
+    } if (nuevoUsuario.contraseña === "") {
+      setError("Ingrese su contraseña")
+      return
+    } if (!regexPas.test(nuevoUsuario.contraseña)) {
+      setError("Ingrese un mínimo de 8 caracteres y un máximo de 15 , al menos una letra minúscula, al menos una letra mayúscula, al menos 1 dígito (número), al menos 1 caracter especial, que no existan espacios en blanco.")
+      return
+    } if (nuevoUsuario.contraseña !== nuevoUsuario.confirmarContraseña) {
+      setError("Las contraseñas no coinciden")
+      return
+    }
+    //Se elimina el mensaje de error
+    setError("")
+    setSucces("Registro exitoso")
+
+    console.log('Datos del nuevo usuario:', nuevoUsuario);
+  }
+
+
+
+  return (
     <div className="contenedor-editar-perfil">
-      <h1>Editar Perfil</h1>
-      <form className='formularioo' onSubmit={handleGuardar}>
-        <div className="campo">
-          <label>Nombre</label>
-          <input // el nombre y el apellido no se pueden cambiar una vez ingresado el usuario, solo debemos dejar habilitado el cambio para telefono, email y foto
+      <h1 className="titulo-editar-perfil">Registro de usuario</h1>
+      <form className='formulario-editar-perfil' onSubmit={handleSubmit}>
+        <div className="campo-editar">
+          <label className='label-editar'>Nombre</label>
+          <input className='input-editar'
             type="text"
             name="nombre"
-            value={usuario.nombre}
+            value={nuevoUsuario.nombre}
             onChange={handleChange}
-            required
             disabled
+
           />
         </div>
-        <div className="campo">
-          <label>Apellido</label>
-          <input
+        <div className="campo-editar">
+          <label className='label-editar'>Apellido</label>
+          <input className='input-editar'
             type="text"
             name="apellido"
-            value={usuario.apellido}
+            value={nuevoUsuario.apellido}
             onChange={handleChange}
-            required
+            disabled
+
+          />
+        </div>
+
+        <div className="campo-editar">
+          <label className='label-editar'>codigo</label>
+          <input className='input-editar'
+            name="codigo"
+            type='text'
+            value="+56"
+            onChange={handleChange}
             disabled
           />
         </div>
-        <div className="campo">
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={usuario.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="campo">
-          <label>Teléfono</label>
-          <input
+
+        <div className="campo-editar">
+          <label className='label-editar'>Teléfono</label>
+          <input className='input-editar'
             type="tel"
             name="telefono"
-            value={usuario.telefono}
+            value={nuevoUsuario.telefono}
             onChange={handleChange}
-            pattern="^\+56\s\d{9}$" 
-            title="Debe empezar con +56 seguido de 9 dígitos"
-            required
+            title="Debe tener 9 dígitos"
+            pattern="[0-9]{9}"
+
           />
         </div>
-        <div className="campo">
-          <label>Imagen de perfil</label>
-          <input
+        <div className="campo-editar">
+          <label className='label-editar'>Email</label>
+          <input className='input-editar'
+            type="email"
+            name="email"
+            value={nuevoUsuario.email}
+            onChange={handleChange}
+
+          />
+        </div>
+
+        <div className='campo-editar'>
+          <label className='label-editar'> Contraseña</label>
+          <input className='input-editar'
+            type="password"
+            name='contraseña'
+            value={nuevoUsuario.contraseña}
+            onChange={handleChange}
+
+          />
+
+
+        </div>
+
+        <div className='campo-editar'>
+          <label className='label-editar'>Confirmar contraseña</label>
+          <input className='input-editar'
+            type="password"
+            name='confirmarContraseña'
+            value={nuevoUsuario.confirmarContraseña}
+            onChange={handleChange}
+
+          />
+
+        </div>
+
+        <div className="campo-editar">
+          <label className='label-editar'>Imagen de perfil</label>
+          <input className='input-editar'
             type="file"
             accept="image/*"
             onChange={handleImageChange}
           />
-          {usuario.foto && <img src={usuario.foto} alt="Imagen de perfil" className="imagen-perfil" />}
+          {nuevoUsuario.foto && <img src={nuevoUsuario.foto} alt="Imagen de perfil" className="imagen-editar" />}
         </div>
-        <div className="botones">
-        <button type="submit" className="boton-guardar">
-          Guardar
-        </button>
+        <div className="boton-editar-perfil">
+          <button className="boton-guardar-editar"
+            type="submit"> Registrarse
+          </button>
         </div>
+        <div className='mensajeEditar'>
+          {error.length > 0 && <h3 className="error">{error}</h3>}
+          {succes.length > 0 && <h3 className="succes">{succes}</h3>}
+        </div>
+
+
+
       </form>
     </div>
-  );
+  )
+
+
+
 }
 
 export default EditarPerfil;

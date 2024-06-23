@@ -16,7 +16,7 @@ function Registro() {
   const [nuevoUsuario, setNuevoUsuario] = useState({
     nombre: '',
     apellido: '',
-    telefono: '+56',
+    telefono: '',
     email: '',
     imagen: null,
     contraseña: '',
@@ -37,12 +37,12 @@ function Registro() {
     }
 
     if (name === 'telefono') {
-      if (value.startsWith('+56 ')) {
-        if (value.length <= 13) {
+      if (value.startsWith('')) {
+        if (value.length <= 9) {
           setNuevoUsuario({ ...nuevoUsuario, telefono: value });
         }
-      } else if (value.startsWith('+56')) {
-        setNuevoUsuario({ ...nuevoUsuario, telefono: '+56 ' });
+      } else if (value.startsWith('')) {
+        setNuevoUsuario({ ...nuevoUsuario, telefono: '' });
       }
     } else {
       setNuevoUsuario({ ...nuevoUsuario, [name]: value });
@@ -110,7 +110,7 @@ function Registro() {
             name="nombre"
             value={nuevoUsuario.nombre}
             onChange={handleChange}
-            
+
           />
         </div>
         <div className="campo-registro">
@@ -120,9 +120,20 @@ function Registro() {
             name="apellido"
             value={nuevoUsuario.apellido}
             onChange={handleChange}
-            
+
           />
         </div>
+        <div className="campo-registro">
+          <label className='label-registro'>codigo</label>
+          <input className='input-registro'
+            name="codigo"
+            type='text'
+            value="+56"
+            onChange={handleChange}
+            disabled
+          />
+        </div>
+
         <div className="campo-registro">
           <label className='label-registro'>Teléfono</label>
           <input className='input-registro'
@@ -130,8 +141,9 @@ function Registro() {
             name="telefono"
             value={nuevoUsuario.telefono}
             onChange={handleChange}
-            title="Debe empezar con +56 seguido de 9 dígitos"
-            
+            title="Debe tener 9 dígitos"
+            pattern="[0-9]{9}"
+
           />
         </div>
         <div className="campo-registro">
@@ -141,9 +153,11 @@ function Registro() {
             name="email"
             value={nuevoUsuario.email}
             onChange={handleChange}
-            
+
           />
         </div>
+
+
 
         <div className='campo-registro'>
           <label className='label-registro'> Contraseña</label>
@@ -152,7 +166,7 @@ function Registro() {
             name='contraseña'
             value={nuevoUsuario.contraseña}
             onChange={handleChange}
-            
+
           />
 
 
@@ -165,7 +179,7 @@ function Registro() {
             name='confirmarContraseña'
             value={nuevoUsuario.confirmarContraseña}
             onChange={handleChange}
-            
+
           />
 
         </div>
@@ -180,15 +194,15 @@ function Registro() {
           {nuevoUsuario.foto && <img src={nuevoUsuario.foto} alt="Imagen de perfil" className="imagen-registro" />}
         </div>
         <div className="boton-registro">
-          <button  className="boton-guardar-registro"
-           type="submit"> Registrarse
+          <button className="boton-guardar-registro"
+            type="submit"> Registrarse
           </button>
         </div>
         <div className='mensajeRegistro'>
           {error.length > 0 && <h3 className="error">{error}</h3>}
           {succes.length > 0 && <h3 className="succes">{succes}</h3>}
         </div>
-      
+
 
 
       </form>

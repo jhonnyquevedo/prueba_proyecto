@@ -1,135 +1,144 @@
-.contenedor-editar-perfil {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  margin-top: 50px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 1px 18px #76ABAE;
+.contenedor-editar-perfil{
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 18px #76ABAE;
+  }
+  
+  .titulo-editar-perfil {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .boton-editar-perfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .formulario-editar-perfil {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .campo-editar {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+ .label-editar {
+    margin-bottom: 5px;
+  }
+  
+  .input-editar[type="text"],
+  .input-editar[type="email"],
+  .input-editar[type="tel"],
+  .input-editar[type="file"],
+  .input-editar[type="password"]
+  {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .imagen-editar {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 4px;
+    object-fit: cover;
+    height: 200px; 
+  }
+  
+  .boton-guardar-editar {
+    background-color: #76ABAE;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 150px; 
+    margin-top: 20px; 
+  }
+  
+  .boton-guardar-editar :hover {
+    background-color: #31363F;
+  }
+  
+.error{
+  font-size: 20px;
+  color: red;
 }
-
-.contenedor-editar-perfil h1 {
-  font-size: 24px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.botones{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.campo {
-  margin-bottom: 15px;
-  width: 100%;
-}
-
-label {
-  font-weight: bold;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="file"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.imagen-perfil {
-  max-width: 100%;
-  margin-top: 10px;
-  border-radius: 4px;
-  object-fit: cover;
-  height: 200px; 
-}
-
-.boton-guardar {
-  background-color: #76ABAE;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  font-size: 18px;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 150px; 
-  margin-top: 20px; 
-}
-
-.boton-guardar:hover {
-  background-color: #31363F;
-}
-
-
 
 @media (max-width: 768px) {
   .contenedor-editar-perfil {
-      padding: 15px;
+    margin: 10px auto;
+    padding: 15px;
+    margin-top: 30px;
   }
 
-  .contenedor-editar-perfil h1 {
-      font-size: 22px;
+  .titulo-editar-perfil {
+    font-size: 20px;
+    margin-bottom: 15px;
   }
 
-  .campo {
-      margin-bottom: 10px;
+  .boton-guardar-editar {
+    padding: 10px 15px;
+    font-size: 16px;
+    width: 130px;
   }
 
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="file"] {
-      font-size: 14px;
+  .input-editar[type="text"],
+  .input-editar[type="email"],
+  .input-editar[type="tel"],
+  .input-editar[type="file"],
+  .input-editar[type="password"] {
+    padding: 8px;
+    font-size: 14px;
   }
 
-  .imagen-perfil {
-      height: 150px; 
-  }
-
-  .boton-guardar {
-      font-size: 16px;
-      padding: 10px 15px;
+  .error {
+    font-size: 16px;
   }
 }
 
 @media (max-width: 480px) {
   .contenedor-editar-perfil {
-      padding: 10px;
+    margin: 5px auto;
+    padding: 10px;
+    margin-top: 20px;
   }
 
-  .contenedor-editar-perfil h1 {
-      font-size: 20px;
+  .titulo-editar-perfil {
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 
-  .campo {
-      margin-bottom: 8px;
+  .boton-guardar-editar {
+    padding: 8px 10px;
+    font-size: 14px;
+    width: 100px;
   }
 
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="file"] {
-      font-size: 12px;
+  .input-editar[type="text"],
+  .input-editar[type="email"],
+  .input-editar[type="tel"],
+  .input-editar[type="file"],
+  .input-editar[type="password"] {
+    padding: 6px;
+    font-size: 12px;
   }
 
-  .imagen-perfil {
-      height: 120px; 
-  }
-
-  .boton-guardar {
-      font-size: 14px;
-      padding: 8px 12px;
+  .error {
+    font-size: 14px;
   }
 }
