@@ -155,7 +155,7 @@ function Vehiculos() {
                             marca={element.marca}
                             modelo={element.modelo}
                             año={element.año}
-                            transmision={element.transmision}
+                            precio={element.precio}
                         />
                     </div>
                 ))}

@@ -10,7 +10,7 @@
 }
 
 .filtrosVehiculos {
-    width: 90%;
+    width: 80%;
     padding: 20px;
     background-color: #fff;
     margin: 10px;
@@ -18,8 +18,13 @@
 }
 
 .boton-k {
-    color: #fff;
-    border-radius: 15px;
+    background-color: #76ABAE;
+    color:white;
+    height: 40px;
+    border-radius: 30px;
+    width: 100px;
+    border: none;
+
 }
 
 .filtrarPor {
@@ -34,6 +39,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+    
 }
 
 .galeriaVehiculos {
@@ -62,32 +68,15 @@
 }
 
 .btnBuscarFiltros {
+    background-color: #76ABAE;
+    color:white;
     height: 40px;
-    margin: 0;
-    background-color: #76ABAE; 
-    color: #fff;
-    border: none;
-    cursor: pointer;
-<<<<<<< HEAD
-    padding: 10px 20px;
     border-radius: 30px;
+    width: 60%;   
+    border: none;
+
 }
 
-.botonOrdenarPor {
-    padding: 10px;
-    border: none;
-    border-radius: 30px;
-    width: 100px;
-=======
-    padding: 1px 20px;
-    border-radius: 15px;
-}
-
-.boton-k {
-    padding: 10px;
-    color: #fff;
->>>>>>> upstream/main
-}
 
 @media (max-width: 425px) {
     .btnFiltros {
