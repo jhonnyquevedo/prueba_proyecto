@@ -37,14 +37,14 @@ function MisPublicaciones() {
 
     return (
         <div className="mis-publicaciones-container">
-            <h1>Mis Publicaciones</h1>
+            <h1 className="mis-publicaciones-title">Mis Publicaciones</h1>
             <div className="publicaciones-grid">
                 {publicaciones.map((publicacion) => (
                     <div key={publicacion.id_publicacion} className="publicacion-card">
                         <img src={publicacion.imagen} alt={publicacion.titulo} />
                         <h2>{publicacion.titulo}</h2>
                         <div className="botones-container">
-                            <button className='boton-MisPublicaciones' onClick={() => handleVerDetalle(publicacion.id_publicacion)}>Ver Detalle</button>
+                            <button className='boton-MisPublicaciones' onClick={() => handleVerDetalle(publicacion.id_publicacion)}>Detalle</button>
                             <button className='boton-MisPublicaciones' onClick={() => handleEditar(publicacion.id_publicacion)}>Editar</button>
                             <button className='boton-MisPublicaciones' onClick={() => handleEliminar(publicacion.id_publicacion)}>Eliminar</button>
                         </div>

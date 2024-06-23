@@ -1,49 +1,38 @@
 .mis-publicaciones-container {
-    padding: 20px;
+    padding: 50px;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
+.mis-publicaciones-title {
+    font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .publicaciones-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 50px;
     justify-content: center;
 }
 
 .publicacion-card {
-    width: 300px;
+    width: 350px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     overflow: hidden;
+    padding: 20px;
+    margin-top: 20px;
 }
 
 .publicacion-card img {
     width: 100%;
     height: auto;
-    border-top-left-radius: 10px;
+    border-top-left-radius: 20px;
     border-top-right-radius: 10px;
 }
 
-.publicacion-info {
-    padding: 20px;
-}
-
-.publicacion-info h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.publicacion-info p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 10px;
-}
 
 .botones-container {
     display: flex;
@@ -57,7 +46,7 @@ h1 {
     background-color: #76ABAE;
     color: white;
     border: none;
-    border-radius: 15px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s;
 }

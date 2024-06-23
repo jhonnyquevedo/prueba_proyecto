@@ -66,8 +66,8 @@ function EditarPublicacion() {
 
     return (
         <div className="container-edit-publicacion">
-            <div className="center">
-                <h1>Editar información de tu aviso</h1>
+            <h1 className="title-edit-publicacion">Editar información de tu aviso</h1>
+                
                 <form onSubmit={handleSubmit} className="form-vehiculo">
                     <label>
                         Título
@@ -207,10 +207,13 @@ function EditarPublicacion() {
                         />
                     </label>
                     {vehiculoEditado.imagen && <img src={vehiculoEditado.imagen} alt="Vehículo" className="imagen-vehiculo" />}
-                    <button type="submit" className="boton-publicar">Actualizar</button>
+                    
                 </form>
+                <div className="btn-editar">
+                <button type="submit" className="boton-editar-aviso">Actualizar</button>
+                </div>
             </div>
-        </div>
+       
     )
 }
 
