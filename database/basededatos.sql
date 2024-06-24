@@ -46,7 +46,7 @@ CREATE TABLE publicaciones (
     precio INTEGER,
     id_marca INT NOT NULL REFERENCES marcas(id_marca),
     id_modelo INT NOT NULL REFERENCES modelos(id_modelo),
-    año INTEGER,
+    year INTEGER,
     kilometraje INTEGER,
     id_transmision INT NOT NULL REFERENCES transmisiones(id_transmision),
     id_categoria INT NOT NULL REFERENCES categorias(id_categoria),

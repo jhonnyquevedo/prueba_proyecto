@@ -3,8 +3,8 @@ const cors = require("cors")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { pool } = require("./database.js")
-const { verificarUsuario, getDataMisPub } = require("./funciones.js")
-const {autenticadorToken} = require("./middleware.js")
+const { verificarUsuario, getDataMisPub, getDataPerfil } = require("./funciones.js")
+const { autenticadorToken } = require("./middleware.js")
 require("dotenv").config()
 
 
@@ -21,7 +21,7 @@ app.use(cors())
 // rutas GET
 
 // data completa de publicaciones
-const queryVehiculos = "SELECT p.id_publicacion AS publicacion_id, p.id_usuario AS usuario_id, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.a¤o AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN  categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado"
+const queryVehiculos = "SELECT p.id_publicacion AS publicacion_id, p.id_usuario AS usuario_id, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN  categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado"
 app.get('/vehiculos', async (req, res) => {
     try {
         const consulta = `${queryVehiculos};`
@@ -62,7 +62,7 @@ app.get('/vehiculos/filtros', async (req, res) => {
             agregarFiltro("t.nombre", "=", transmision)
         }
         const unionDeFiltros = filtros.length > 0 ? 'WHERE ' + filtros.join(" AND ") : '';
-        const consulta = `SELECT p.id_publicacion AS publicacion_id, p.id_usuario AS usuario_id, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.a¤o AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado ${unionDeFiltros};`;
+        const consulta = `SELECT p.id_publicacion AS publicacion_id, p.id_usuario AS usuario_id, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado ${unionDeFiltros};`;
         const { rows } = await pool.query(consulta, values)
         res.json(rows)
     } catch (error) {
@@ -177,32 +177,50 @@ app.post('/login', async (req, res) => {
     }
 })
 
+// publicar
+app.post('/publicar', async (req, res) => {
+    try {
+        const { id_usuario, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen } = req.body
+        if (!id_usuario || !id_marca || !id_modelo || !id_transmision || !id_categoria || !id_estado) {
+            return res.status(500).send({ message: "faltan datos para poder realizar el registro ", code: 500 })
+        }
+        const postPublicacion = await postearPub(id_usuario, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen)
+
+    } catch (error) {
+        res.status(500).send({ message: "No se pudo postear la publicación", code: 500 })
+    }
+})
+
+
 // rutas privadas
-app.get("/perfil", autenticadorToken, (req, res) => {
+app.get("/perfil", autenticadorToken, async (req, res) => {
     const usuario = req.user
-    res.status(200).json({ message: 'Acceso concedido a ruta privada', usuario})
+    const id_usuario = usuario.id_usuario
+    console.log(id_usuario)
+    const dataPerfil = await getDataPerfil(id_usuario)
+    res.status(200).json({ message: 'Acceso concedido a ruta privada', dataPerfil })
 })
 
 app.get("/editar-perfil", autenticadorToken, (req, res) => {
     const usuario = req.user
-    res.status(200).json({ message: 'Acceso concedido a ruta privada', usuario})
+    res.status(200).json({ message: 'Acceso concedido a ruta privada', usuario })
 })
 
 app.get("/publicar", autenticadorToken, (req, res) => {
     const usuario = req.user
-    res.status(200).json({ message: 'Acceso concedido a ruta privada', usuario})
+    res.status(200).json({ message: 'Acceso concedido a ruta privada', usuario })
 })
 
 app.get("/editar-publicacion/:id", autenticadorToken, (req, res) => {
     const usuario = req.user
-    res.status(200).json({ message: 'Acceso concedido a ruta privada', usuario})
+    res.status(200).json({ message: 'Acceso concedido a ruta privada', usuario })
 })
 
-app.get("/mis-publicaciones/:id_usuario", autenticadorToken, async (req, res) => {
+app.get("/mis-publicaciones", autenticadorToken, async (req, res) => {
     const usuario = req.user
-    const {id_usuario} = req.params
-    const dataMisPub = await getDataMisPub(id_usuario, usuario)
+    const id_usuario = usuario.id_usuario
+    const dataMisPub = await getDataMisPub(id_usuario)
     console.log(dataMisPub)
-    res.status(200).json({ message: 'Acceso concedido a ruta privada', usuario, dataMisPub})
+    res.status(200).json({ message: 'Acceso concedido a ruta privada', usuario, dataMisPub })
 })
 
