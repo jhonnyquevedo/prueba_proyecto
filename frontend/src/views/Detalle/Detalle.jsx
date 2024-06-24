@@ -45,7 +45,10 @@ function Detalle() {
         <div className="detalleVehiculo">
             <h1>{vehiculo.titulo}</h1>
             <div className="detalleVehiculo2">
-                <img  src={vehiculo.imagen} alt={vehiculo.titulo} />
+                
+                <div className="imagenVehiculo">
+                <img className='imagen-detalle' src={vehiculo.imagen} alt={vehiculo.titulo} />
+                </div>
 
                 <div>
                     <h2> <MdOutlineAttachMoney className='iconoDetalle'/>  Precio: {vehiculo.precio}</h2>

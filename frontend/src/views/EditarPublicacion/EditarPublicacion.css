@@ -1,11 +1,14 @@
 .container-edit-publicacion {
-    padding: 50px;
-    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 18px #76ABAE;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
 }
 
 .center {
@@ -21,17 +24,16 @@
     box-shadow: 0 0 20px rgba(118, 171, 174, 0.5);
 }
 
-.center h1 {
+.title-edit-publicacion {
+    font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
 }
 
 .form-vehiculo {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 10px;
+  flex-direction: column;
+  width: 100%;
 }
 
 label {
@@ -74,17 +76,24 @@ textarea {
     border-radius: 5px;
 }
 
-.boton-publicar {
+
+.btn-editar {
+    padding-top: 10px;
+  
+  }
+  
+  .boton-editar-aviso {
+  
     background-color: #76ABAE;
     color: #fff;
     border: none;
     padding: 12px 20px;
     font-size: 18px;
-    border-radius: 15px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    width: 150px;
     margin-top: 20px;
-}
+  }
 
 .boton-publicar:hover {
     background-color: #31363F;

@@ -5,8 +5,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
-   
 }
 
 .login-container {
@@ -31,7 +29,7 @@
 .login-inputs input {
     margin: 5px 0;
     padding: 10px;
-    width: 200px;
+    width: 100%;
 }
 
 input {
@@ -48,9 +46,6 @@ input {
     width: 150px;
     border-radius: 30px;
 }
-
-
-    
 
 button:hover {
     background-color: #31363F;
@@ -71,10 +66,32 @@ button:hover {
     color: #76ABAE;
 }
 
-.formLogin{
+.formLogin {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
     padding-top: 50px;
+}
+
+
+@media (max-width: 600px) {
+    .login-container {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .login-inputs {
+        width: 100%;
+    }
+
+    .login-inputs input {
+        width: 100%;
+    }
+
+    .botonLogin {
+        width: 100%;
+        padding: 15px 0;
+    }
 }

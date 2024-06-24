@@ -29,7 +29,7 @@ function Perfil() {
     <div className='container'>
       <div className="contenedor-perfil">
         <div className="bienvenida">
-          <h1>Bienvenido, {usuario.nombre}!</h1>
+          <h1 className='bienvenida'>Bienvenido, {usuario.nombre}!</h1>
         </div>
         <div className="info-usuario">
           <img src={usuario.foto} alt="Foto de perfil" className="foto-perfil" />

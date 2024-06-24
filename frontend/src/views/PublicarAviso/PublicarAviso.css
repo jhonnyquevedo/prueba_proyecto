@@ -1,117 +1,79 @@
-.container-p {
-  padding: 50px;
-  width: 100%;
+.container-publicar-aviso {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  margin-top: 50px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 18px #76ABAE;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+}
+
+.titulo-publicar-aviso {
+  font-size: 24px;
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.center {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 30px;
-  box-shadow: #76ABAE 0 0 20px;
+.btn-publicar {
+  padding-top: 10px;
+
 }
 
-.center h1 {
-  text-align: center;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
+.boton-publicar-aviso {
 
-.form-vehiculo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-top: 10px;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-}
-
-input[type="text"],
-input[type="number"],
-textarea,
-input[type="file"],
-select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-}
-
-.inline-fields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 40px;
-}
-
-textarea {
-  width: 100%;
-  padding: 40px;
-  border: 2px solid #ccc;
-  border-radius: 100px;
-  height: 150px;
-}
-
-.imagen-vehiculo {
-  display: block;
-  margin-top: 10px;
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
-
-.boton-publicar {
-  display: flex;
   background-color: #76ABAE;
   color: #fff;
-  flex-direction: column;
-  align-items: center;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 150px;
   margin-top: 20px;
-  border-radius: 15px;
 }
 
-.boton-publicar:hover {
+
+.formulario-publicar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+
+.label-publicar-aviso {
+  margin-bottom: 5px;
+}
+
+.input-publicar-aviso[type="text"],
+.input-publicar-aviso[type="email"],
+.input-publicar-aviso[type="tel"],
+.input-publicar-aviso[type="file"],
+.input-publicar-aviso[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.imagen-publicar-aviso {
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: 4px;
+  object-fit: cover;
+  height: 200px;
+}
+
+
+.btn-publicar :hover {
   background-color: #31363F;
 }
 
-
-@media (max-width: 1200px) {
-  .center {
-      width: 90%;
-  }
-}
-
-@media (max-width: 768px) {
-  .center {
-      width: 95%;
-  }
-}
-
-@media (max-width: 480px) {
-  .center {
-      width: 100%;
-      padding: 5px; 
-  }
-
-  textarea {
-      padding: 20px; 
-  }
-
-  .imagen-vehiculo {
-      margin-top: 5px; 
-  }
+.error {
+  font-size: 20px;
+  color: red;
 }
