@@ -15,6 +15,11 @@
     justify-content: center;
 }
 
+.publicacion-title{
+    padding: 20px;
+    font-size: 20px;
+}
+
 .publicacion-card {
     width: 350px;
     background-color: #ffffff;

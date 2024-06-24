@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from '../../context/Context';
 import logo from '../../assets/logo/logo.png';
@@ -8,12 +8,17 @@ function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  //  componente NavLink junto con el atributo isActive nos ayudan a saber cuál de las opciones de navegación corresponde a la ruta consultada.
   const setActiveClass = ({ isActive }) => (isActive ? "active" : undefined);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   useEffect(() => {
@@ -82,8 +87,10 @@ function Navbar() {
                 <h6>Perfil</h6>
               </NavLink>
             </div>
-            <div className="boton" onClick={logout}>
-              <h6>Cerrar Sesión</h6>
+            <div className="boton">
+              <NavLink className={`base ${setActiveClass}`} to="/" onClick={handleLogout} activeclassname="active-link">
+                <h6>Cerrar Sesión</h6>
+              </NavLink>
             </div>
           </>
         )}
