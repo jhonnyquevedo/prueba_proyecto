@@ -27,7 +27,6 @@ const AuthProvider = ({ children }) => {
         try {
             const res = await fetch('http://localhost:3000/estados')
             const dataEstados = await res.json()
-            //console.log(dataEstados)
             setEstado(dataEstados)
         } catch (error) {
             console.log("no se pudo conectar con el servidor")
@@ -41,7 +40,6 @@ const AuthProvider = ({ children }) => {
         try {
             const res = await fetch('http://localhost:3000/marcas')
             const dataMarcas = await res.json()
-            //console.log(dataMarcas)
             setMarcas(dataMarcas)
         } catch (error) {
             console.log("no se pudo conectar con el servidor")
@@ -58,7 +56,7 @@ const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout, getDataEstado, estados, getDataVehiculos, dataCompletaVehiculos, getDataMarca, marcas }}>
+        <AuthContext.Provider value={{ isAuthenticated, login, logout, getDataEstado, estados, getDataVehiculos, setDataCompletaVehiculos, dataCompletaVehiculos, getDataMarca, marcas }}>
             {children}
         </AuthContext.Provider>
     );
