@@ -12,8 +12,6 @@ CREATE TABLE usuarios (
     password VARCHAR
 );
 
-/* ALTER TABLE usuarios RENAME COLUMN contraseña TO password; */
-
 CREATE TABLE marcas (
     id_marca SERIAL PRIMARY KEY,
     nombre VARCHAR(50)
@@ -43,6 +41,7 @@ CREATE TABLE estados (
 CREATE TABLE publicaciones (
     id_publicacion SERIAL PRIMARY KEY,
     id_usuario INT NOT NULL REFERENCES usuarios(id_usuario),
+    titulo VARCHAR(60),
     precio INTEGER,
     id_marca INT NOT NULL REFERENCES marcas(id_marca),
     id_modelo INT NOT NULL REFERENCES modelos(id_modelo),

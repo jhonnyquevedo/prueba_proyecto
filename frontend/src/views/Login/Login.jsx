@@ -6,6 +6,8 @@ import { useState } from 'react'
 
 function Login() {
 
+
+    
     //Expresión regular para validar que el campo de email contenga el formato adecuado
     const regexParaEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
