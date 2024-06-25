@@ -99,7 +99,7 @@ app.get('/transmisiones', async (req, res) => {
     try {
         const consulta = "SELECT * FROM transmisiones;"
         const { rows } = await pool.query(consulta)
-        res.json(rows)
+        res.json(rows[0])
     } catch (error) {
         console.log(error)
     }

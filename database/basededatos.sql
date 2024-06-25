@@ -12,8 +12,6 @@ CREATE TABLE usuarios (
     password VARCHAR
 );
 
-/* ALTER TABLE usuarios RENAME COLUMN contraseña TO password; */
-
 CREATE TABLE marcas (
     id_marca SERIAL PRIMARY KEY,
     nombre VARCHAR(50)
