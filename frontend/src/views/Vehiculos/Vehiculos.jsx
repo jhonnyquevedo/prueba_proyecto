@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/Context'
 
 function Vehiculos() {
 
-    const { getDataEstado, estados, getDataVehiculos, dataCompletaVehiculos, getDataMarca, marcas } = useContext(AuthContext)
+    const { getDataEstado, estados, getDataVehiculos, setDataCompletaVehiculos, dataCompletaVehiculos, getDataMarca, marcas } = useContext(AuthContext)
     useEffect(() => {
         getDataVehiculos()
         getDataEstado()
@@ -50,12 +50,6 @@ function Vehiculos() {
     const cambioEnAño = (element) => setAñoOpcion(element.target.value)
     const cambioEnTransmision = (element) => setTransmisionOpcion(element.target.value)
 
-    // funcion para detectar la marca y poder mapear el modelo segun la marca
-    const getModeloPorMarca = (marca) => {
-        const marcaElegida = opciones[0].opcionMarcaYModelo.find(element => element.nombre === marca)
-        return marcaElegida ? marcaElegida.modelos : []
-    }
-
     // funcion para aplicar flitro
     const aplicarFiltro = () => {
         // logica para hacer el llamado a la api y que traiga la data con los filtros aplicados
@@ -80,7 +74,7 @@ function Vehiculos() {
             return 0;
         })
 
-        setData(dataOrdenada)
+        setDataCompletaVehiculos(dataOrdenada)
         setConfigOrden({ key, direccion })
     }
 
@@ -118,7 +112,7 @@ function Vehiculos() {
                         console.log(marcaOpcion)
                     </select>
 
-                    <select className="selectFiltros" value={añoOpcion} onChange={(element) => cambioEnAño(element)}>
+                    <select className="selectFiltros" value={añoOpcion} onChange={(element) => cambioEnAño(element)}> {/* cambiar a input tipo numero limitado a 4 numeros validando que sea un numero entre 1950 a 2024*/}
                         <option value="">Año</option>
                         {opciones[0].opcionAño?.sort((a, b) => b - a).map((año, index) =>
                             <option value={año} key={index}>{año}</option>
@@ -154,7 +148,7 @@ function Vehiculos() {
 
             <div className="galeriaVehiculos">
 
-                {dataCompletaVehiculos.map(element => (
+                {dataCompletaVehiculos?.map(element => (
                     <div key={element.id_publicacion} /* to={`/detalle/${element.id_publicacion}`} */>
                         <Card
                             id={element.id_publicacion}
@@ -162,7 +156,7 @@ function Vehiculos() {
                             titulo={element.titulo}
                             marca={element.marca}
                             modelo={element.modelo}
-                            año={element.año}
+                            año={element.año} // agregar kilometraje a la card
                             precio={element.precio}
                         />
                     </div>
