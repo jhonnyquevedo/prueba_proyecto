@@ -3,7 +3,7 @@ const cors = require("cors")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { pool } = require("./database.js")
-const { verificarUsuario, getDataMisPub, getDataPerfil, postearPub, actualizarPub } = require("./funciones.js")
+const { verificarUsuario, getDataMisPub, getDataPerfil, postearPub, actualizarPub, actualizarPerfil } = require("./funciones.js")
 const { autenticadorToken } = require("./middleware.js")
 require("dotenv").config()
 
@@ -18,10 +18,10 @@ app.use(express.json())
 app.use(cors())
 
 
-// rutas GET
+// rutas GET publicas
 
 // data completa de publicaciones
-const queryVehiculos = "SELECT p.id_publicacion AS publicacion_id, p.id_usuario AS usuario_id, p.titulo AS titulo, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN  categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado"
+const queryVehiculos = "SELECT p.id_publicacion AS id_publicacion, p.id_usuario AS id_usuario, p.titulo AS titulo, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN  categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado"
 app.get('/vehiculos', async (req, res) => {
     try {
         const consulta = `${queryVehiculos};`
@@ -62,7 +62,7 @@ app.get('/vehiculos/filtros', async (req, res) => {
             agregarFiltro("t.nombre", "=", transmision)
         }
         const unionDeFiltros = filtros.length > 0 ? 'WHERE ' + filtros.join(" AND ") : '';
-        const consulta = `SELECT p.id_publicacion AS publicacion_id, p.id_usuario AS usuario_id, p.titulo AS titulo, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado ${unionDeFiltros};`;
+        const consulta = `SELECT p.id_publicacion AS id_publicacion, p.id_usuario AS id_usuario, p.titulo AS titulo, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado ${unionDeFiltros};`;
         const { rows } = await pool.query(consulta, values)
         res.json(rows)
     } catch (error) {
@@ -127,7 +127,7 @@ app.get('/categorias', async (req, res) => {
     }
 })
 
-// rutas privadas
+// rutas GET privadas
 app.get("/perfil", autenticadorToken, async (req, res) => {
     const usuario = req.user
     const id_usuario = usuario.id_usuario
@@ -228,8 +228,16 @@ app.post('/publicar', async (req, res) => {
 
 // editar publicación
 app.put('/editar-publicacion/:id_publicacion', async (req, res) => {
-    const id_publicacion = req.params
-    const { titulo, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen } = req.body
-    const publicacionActualizada = await actualizarPub(id_publicacion, titulo, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen)
-    res.status(200).send({message:"la publicacion ha sido actualizada"}, publicacionActualizada)
+    try {
+        const { id_publicacion } = req.params
+        console.log(id_publicacion)
+        const { titulo, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen } = req.body
+        const publicacionActualizada = await actualizarPub(id_publicacion, titulo, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen)
+        console.log("Publicacion actualizada a: ", publicacionActualizada)
+        res.status(200).send("La publicacion se actualizó exitosamente")
+    } catch (error) {
+        console.log(error)
+    }
 })
+
+// editar perfil
