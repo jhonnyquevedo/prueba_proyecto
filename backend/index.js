@@ -3,7 +3,7 @@ const cors = require("cors")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { pool } = require("./database.js")
-const { verificarUsuario, getDataMisPub, getDataPerfil, postearPub, actualizarPub } = require("./funciones.js")
+const { verificarUsuario, getDataMisPub, getDataPerfil, postearPub, actualizarPub, actualizarPerfil, verificacionDePublicacion, borrarPublicacion, verificacionDeUsuario, borrarCuenta } = require("./funciones.js")
 const { autenticadorToken } = require("./middleware.js")
 require("dotenv").config()
 
@@ -18,10 +18,10 @@ app.use(express.json())
 app.use(cors())
 
 
-// rutas GET
+// rutas GET publicas
 
 // data completa de publicaciones
-const queryVehiculos = "SELECT p.id_publicacion AS publicacion_id, p.id_usuario AS usuario_id, p.titulo AS titulo, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN  categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado"
+const queryVehiculos = "SELECT p.id_publicacion AS id_publicacion, p.id_usuario AS id_usuario, p.titulo AS titulo, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN  categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado"
 app.get('/vehiculos', async (req, res) => {
     try {
         const consulta = `${queryVehiculos};`
@@ -62,7 +62,7 @@ app.get('/vehiculos/filtros', async (req, res) => {
             agregarFiltro("t.nombre", "=", transmision)
         }
         const unionDeFiltros = filtros.length > 0 ? 'WHERE ' + filtros.join(" AND ") : '';
-        const consulta = `SELECT p.id_publicacion AS publicacion_id, p.id_usuario AS usuario_id, p.titulo AS titulo, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado ${unionDeFiltros};`;
+        const consulta = `SELECT p.id_publicacion AS id_publicacion, p.id_usuario AS id_usuario, p.titulo AS titulo, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado ${unionDeFiltros};`;
         const { rows } = await pool.query(consulta, values)
         res.json(rows)
     } catch (error) {
@@ -127,7 +127,7 @@ app.get('/categorias', async (req, res) => {
     }
 })
 
-// rutas privadas
+// rutas GET privadas
 app.get("/perfil", autenticadorToken, async (req, res) => {
     const usuario = req.user
     const id_usuario = usuario.id_usuario
@@ -228,8 +228,71 @@ app.post('/publicar', async (req, res) => {
 
 // editar publicación
 app.put('/editar-publicacion/:id_publicacion', async (req, res) => {
-    const id_publicacion = req.params
-    const { titulo, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen } = req.body
-    const publicacionActualizada = await actualizarPub(id_publicacion, titulo, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen)
-    res.status(200).send({message:"la publicacion ha sido actualizada"}, publicacionActualizada)
+    try {
+        const { id_publicacion } = req.params
+        const { titulo, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen } = req.body
+        const publicacionActualizada = await actualizarPub(id_publicacion, titulo, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen)
+        res.status(200).send("La publicacion se actualizó exitosamente")
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
+
+// editar perfil
+app.put('/editar-perfil/:id_usuario', async (req, res) => {
+    try {
+        const { id_usuario } = req.params
+        const { email, foto, telefono, password } = req.body
+        const perfilActualizado = await actualizarPerfil(email, foto, telefono, password, id_usuario)
+        if (!perfilActualizado.rowCount) {
+            return res.status(404).send("No se pudo actualizar el perfil")
+        }
+        res.status(200).send(`Los datos del usuario con id ${id_usuario} se han actualizado correctamente`)
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ message: "Problemas con el servidor", err: error })
+    }
+})
+
+// rutas DELETE
+
+// eliminar publicacion
+app.delete('/mis-publicaciones/:id_publicacion', async (req, res) => {
+    try {
+        const { id_publicacion } = req.params
+        const { id_usuario } = req.body
+        const verificarPublicacion = await verificacionDePublicacion(id_publicacion)
+        if (!verificarPublicacion.rowCount) {
+            return res.status(404).send("Publicación no encotrada")
+        }
+        const validacionDeUsuario = verificarPublicacion.rows[0]
+        if (validacionDeUsuario.id_usuario !== id_usuario) {
+            res.status(401).send("No tienes autorización para borrar esta publicación")
+        }
+        const deletePub = await borrarPublicacion(id_publicacion)
+        if (!deletePub.rowCount) {
+            res.status(500).send("No se logró borrar la publicacion")
+        }
+        res.status(200).send("La publicación se borró con exito")
+    } catch (error) {
+        res.status(500).send({ message: "Problemas con el servidor", err: error })
+    }
+})
+
+//eliminar perfil
+app.delete('/eliminar-perfil/:id_usuario', async (req, res) => {
+    try {
+        const { id_usuario } = req.params
+        const verificarUsuario = await verificacionDeUsuario(id_usuario)
+        if (!verificarUsuario.rowCount) {
+            return res.status(404).send("El usuario no existe")
+        }
+        const eliminarPerfil = await borrarCuenta(id_usuario)
+        if (!eliminarPerfil.rowCount) {
+            return res.status(500).send("Error al eliminar el usuario")
+        }
+        res.status(200).send({ message: "El usuario se ha eliminado junto con todas sus publicaciones", usuario: verificarUsuario.rows[0] })
+    } catch (error) {
+        res.status(500).send({ message: "Problemas con el servidor", err: error })
+    }
 })

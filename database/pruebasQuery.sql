@@ -30,3 +30,19 @@ SELECT p.id_publicacion AS publicacion_id, p.id_usuario AS usuario_id, p.precio 
     "imagen": "esto es una imagen"
 }
 
+/* publicacion por actualizar*/
+{
+    "id_publicacion": 6,
+    "id_usuario": 23,
+    "titulo": null,
+    "precio": 100,
+    "marca": "BYD",
+    "modelo": "X3",
+    "año": 2020,
+    "kilometraje": 0,
+    "transmision": "Manual",
+    "categoria": "Sedan",
+    "estado": "Nuevo",
+    "descripcion": "Esto es la primera prueba",
+    "imagen": "imagenprueba"
+  }

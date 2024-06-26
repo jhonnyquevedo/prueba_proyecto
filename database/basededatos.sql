@@ -40,18 +40,19 @@ CREATE TABLE estados (
 
 CREATE TABLE publicaciones (
     id_publicacion SERIAL PRIMARY KEY,
-    id_usuario INT NOT NULL REFERENCES usuarios(id_usuario),
+    id_usuario INT NOT NULL,
     titulo VARCHAR(60),
     precio INTEGER,
-    id_marca INT NOT NULL REFERENCES marcas(id_marca),
-    id_modelo INT NOT NULL REFERENCES modelos(id_modelo),
+    id_marca INT NOT NULL,
+    id_modelo INT NOT NULL,
     year INTEGER,
     kilometraje INTEGER,
-    id_transmision INT NOT NULL REFERENCES transmisiones(id_transmision),
-    id_categoria INT NOT NULL REFERENCES categorias(id_categoria),
-    id_estado INT NOT NULL REFERENCES estados(id_estado),
+    id_transmision INT NOT NULL,
+    id_categoria INT NOT NULL,
+    id_estado INT NOT NULL,
     descripcion TEXT,
-    imagen VARCHAR(255)
+    imagen VARCHAR(255),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
 );
 
 INSERT INTO marcas (nombre) VALUES
