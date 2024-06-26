@@ -63,11 +63,38 @@ const actualizarPub = async (id_publicacion, titulo, precio, id_marca, id_modelo
 }
 
 const actualizarPerfil = async (email, foto, telefono, password, id_usuario) => {
-const consulta = "UPDATE usuarios SET email = $1, foto = $2, telefono = $3, password = $4 WHERE id_usuario = $5 RETURNING *;"
-const values = [email, foto, telefono, bcrypt.hashSync(password), id_usuario]
-const respuesta = await pool.query(consulta, values)
-return respuesta
+    const consulta = "UPDATE usuarios SET email = $1, foto = $2, telefono = $3, password = $4 WHERE id_usuario = $5 RETURNING *;"
+    const values = [email, foto, telefono, bcrypt.hashSync(password), id_usuario]
+    const respuesta = await pool.query(consulta, values)
+    return respuesta
 }
 
+// ruta DELETE /mis-publicaciones
+const verificacionDePublicacion = async (id_publicacion) => {
+    const consulta = "SELECT id_usuario FROM publicaciones WHERE id_publicacion = $1"
+    const respuesta = await pool.query(consulta, [id_publicacion])
+    return respuesta
+}
 
-module.exports = { verificarUsuario, getDataMisPub, getDataPerfil, postearPub, actualizarPub, actualizarPerfil }
+const borrarPublicacion = async (id_publicacion) => {
+    const consulta = "DELETE FROM publicaciones WHERE id_publicacion = $1"
+    const respuesta = await pool.query(consulta, [id_publicacion])
+    return respuesta
+}
+
+// ruta DELETE /eliminar-perfil
+
+const verificacionDeUsuario = async (id_usuario) => {
+    const consulta = "SELECT * FROM usuarios WHERE id_usuario = $1"
+    const respuesta = await pool.query(consulta, [id_usuario])
+    return respuesta
+}
+
+const borrarCuenta = async (id_usuario) => {
+    const consulta = "DELETE FROM usuarios WHERE id_usuario = $1"
+    const respuesta = await pool.query(consulta, [id_usuario])
+    return respuesta
+    
+}
+
+module.exports = { verificarUsuario, getDataMisPub, getDataPerfil, postearPub, actualizarPub, actualizarPerfil, verificacionDePublicacion, borrarPublicacion, verificacionDeUsuario, borrarCuenta }

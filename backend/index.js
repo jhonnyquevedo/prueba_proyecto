@@ -3,7 +3,7 @@ const cors = require("cors")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { pool } = require("./database.js")
-const { verificarUsuario, getDataMisPub, getDataPerfil, postearPub, actualizarPub, actualizarPerfil } = require("./funciones.js")
+const { verificarUsuario, getDataMisPub, getDataPerfil, postearPub, actualizarPub, actualizarPerfil, verificacionDePublicacion, borrarPublicacion, verificacionDeUsuario, borrarCuenta } = require("./funciones.js")
 const { autenticadorToken } = require("./middleware.js")
 require("dotenv").config()
 
@@ -250,7 +250,49 @@ app.put('/editar-perfil/:id_usuario', async (req, res) => {
         res.status(200).send(`Los datos del usuario con id ${id_usuario} se han actualizado correctamente`)
     } catch (error) {
         console.log(error)
-        res.status(500).send("Problemas con el servidor")
+        res.status(500).send({ message: "Problemas con el servidor", err: error })
     }
 })
 
+// rutas DELETE
+
+// eliminar publicacion
+app.delete('/mis-publicaciones/:id_publicacion', async (req, res) => {
+    try {
+        const { id_publicacion } = req.params
+        const { id_usuario } = req.body
+        const verificarPublicacion = await verificacionDePublicacion(id_publicacion)
+        if (!verificarPublicacion.rowCount) {
+            return res.status(404).send("Publicación no encotrada")
+        }
+        const validacionDeUsuario = verificarPublicacion.rows[0]
+        if (validacionDeUsuario.id_usuario !== id_usuario) {
+            res.status(401).send("No tienes autorización para borrar esta publicación")
+        }
+        const deletePub = await borrarPublicacion(id_publicacion)
+        if (!deletePub.rowCount) {
+            res.status(500).send("No se logró borrar la publicacion")
+        }
+        res.status(200).send("La publicación se borró con exito")
+    } catch (error) {
+        res.status(500).send({ message: "Problemas con el servidor", err: error })
+    }
+})
+
+//eliminar perfil
+app.delete('/eliminar-perfil/:id_usuario', async (req, res) => {
+    try {
+        const { id_usuario } = req.params
+        const verificarUsuario = await verificacionDeUsuario(id_usuario)
+        if (!verificarUsuario.rowCount) {
+            return res.status(404).send("El usuario no existe")
+        }
+        const eliminarPerfil = await borrarCuenta(id_usuario)
+        if (!eliminarPerfil.rowCount) {
+            return res.status(500).send("Error al eliminar el usuario")
+        }
+        res.status(200).send({ message: "El usuario se ha eliminado junto con todas sus publicaciones", usuario: verificarUsuario.rows[0] })
+    } catch (error) {
+        res.status(500).send({ message: "Problemas con el servidor", err: error })
+    }
+})
