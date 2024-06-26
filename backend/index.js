@@ -230,14 +230,27 @@ app.post('/publicar', async (req, res) => {
 app.put('/editar-publicacion/:id_publicacion', async (req, res) => {
     try {
         const { id_publicacion } = req.params
-        console.log(id_publicacion)
         const { titulo, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen } = req.body
         const publicacionActualizada = await actualizarPub(id_publicacion, titulo, precio, id_marca, id_modelo, year, kilometraje, id_transmision, id_categoria, id_estado, descripcion, imagen)
-        console.log("Publicacion actualizada a: ", publicacionActualizada)
         res.status(200).send("La publicacion se actualizó exitosamente")
     } catch (error) {
-        console.log(error)
+        res.status(500).send(error)
     }
 })
 
 // editar perfil
+app.put('/editar-perfil/:id_usuario', async (req, res) => {
+    try {
+        const { id_usuario } = req.params
+        const { email, foto, telefono, password } = req.body
+        const perfilActualizado = await actualizarPerfil(email, foto, telefono, password, id_usuario)
+        if (!perfilActualizado.rowCount) {
+            return res.status(404).send("No se pudo actualizar el perfil")
+        }
+        res.status(200).send(`Los datos del usuario con id ${id_usuario} se han actualizado correctamente`)
+    } catch (error) {
+        console.log(error)
+        res.status(500).send("Problemas con el servidor")
+    }
+})
+
