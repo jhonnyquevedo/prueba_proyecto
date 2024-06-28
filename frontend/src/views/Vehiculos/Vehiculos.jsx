@@ -6,7 +6,7 @@ import { opciones } from "../../../public/opciones";
 
 function Vehiculos() {
 
-    const { getDataTransmision, transmisiones, getDataEstado, estados, getDataVehiculos, setDataCompletaVehiculos, dataCompletaVehiculos, getDataMarca, marcas, getDataCategoria, categorias } = useContext(AuthContext)
+    const {getDataModelos, modelos, getDataTransmision, transmisiones, getDataEstado, estados, getDataVehiculos, setDataCompletaVehiculos, dataCompletaVehiculos, getDataMarca, marcas, getDataCategoria, categorias } = useContext(AuthContext)
     useEffect(() => {
         getDataVehiculos()
         getDataEstado()
@@ -23,24 +23,10 @@ function Vehiculos() {
     const [añoOpcion, setAñoOpcion] = useState("")
     const [transmisionOpcion, setTransmisionOpcion] = useState("")
 
-    // para ejecutar la descarga de la data de modelos segun la marca
-    const [modelos, setModelos] = useState([])
-    const getDataModelos = async (marcaOpcion) => {
-        const id = marcaOpcion
-        const url = `http://localhost:3000/modelos/${id}`
-        console.log(url)
-        try {
-            const res = await fetch(url)
-            const dataModelo = await res.json()
-            setModelos(dataModelo)
-        } catch (error) {
-            console.log("no se pudo conectar con el servidor")
-        }
-    }
-
     // setear el cambio en la opcion seleccionada
     const cambioEnEstado = (element) => setEstadoOpcion(element.target.value)
     const cambioEnCategoria = (element) => setCategoriaOpcion(element.target.value)
+
     const cambioEnMarca = (element) => {
         setMarcaOpcion(element.target.value)
         getDataModelos(element.target.value) // funcion para la peticion get de modelos, pasando por parametro el valor actual, si dejo el marcaOpcion, se desfasa un tiempo
@@ -57,12 +43,10 @@ function Vehiculos() {
             let fEstado = ``
             if (estadoOpcion) {
                 fEstado = `&estado=${estadoOpcion}`
-                console.log(fEstado)
             }
             let fCategoria = ``
             if (categoriaOpcion) {
                 fCategoria = `&categoria=${categoriaOpcion}`
-                console.log(fCategoria)
             }
             let fModelo = ``
             if(modeloOpcion) {
@@ -128,15 +112,12 @@ function Vehiculos() {
                         )}
                     </select>
 
-
                     <select className="selectFiltros" value={categoriaOpcion} onChange={(element) => cambioEnCategoria(element)} >
                         <option value="">Categoria</option>
                         {categorias?.map((categoria) =>
                             <option value={categoria.id_categoria} key={categoria.id_categoria}>{categoria.nombre}</option>
                         )}
                     </select>
-
-
 
                     <select className="selectFiltros" value={marcaOpcion} onChange={(element) => cambioEnMarca(element)}>
                         <option value="">Marca</option>

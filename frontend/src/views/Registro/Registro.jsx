@@ -6,24 +6,22 @@ function Registro() {
   //Expresión regular para validar que el campo de email contenga el formato adecuado
   const regexParaEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
-  //Expresión regular para validar el campo de contraseña solicita un mínimo de 8 caracteres y un máximo de 15 , al menos una letra minúscula, al menos una letra mayúscula, al menos 1 dígito (número), al menos 1 caracter especial, que no existan espacios en blanco y al menos 1 símbolo para más seguridad fuente https://es.stackoverflow.com/questions/4300/expresiones-regulares-para-contrase%C3%B1a-en-base-a-una-politica.
+  //Expresión regular para validar el campo de password solicita un mínimo de 8 caracteres y un máximo de 15 , al menos una letra minúscula, al menos una letra mayúscula, al menos 1 dígito (número), al menos 1 caracter especial, que no existan espacios en blanco y al menos 1 símbolo para más seguridad fuente https://es.stackoverflow.com/questions/4300/expresiones-regulares-para-contrase%C3%B1a-en-base-a-una-politica.
   const regexPas = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.-])[A-Za-z\d$@$!%*?&.-]{8,15}$/;
 
   const [error, setError] = useState("")
   const [succes, setSucces] = useState("")
 
-  //falta hacer las validaciones con regex para email y contraseña
+  //falta hacer las validaciones con regex para email y password
   const [nuevoUsuario, setNuevoUsuario] = useState({
     nombre: '',
     apellido: '',
     telefono: '',
     email: '',
     imagen: null,
-    contraseña: '',
-    confirmarContraseña: ''
+    password: '',
+    confirmarpassword: ''
   })
-
-
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -49,10 +47,6 @@ function Registro() {
     }
   };
 
-
-
-
-
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setNuevoUsuario({ ...nuevoUsuario, imagen: URL.createObjectURL(file) });
@@ -60,6 +54,28 @@ function Registro() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    registrarUsuario()
+  }
+
+  const registrarUsuario = async () => {
+    try {
+      const res = await fetch('http://localhost:3000/registro', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(nuevoUsuario)
+      })
+      if (!res.ok) {
+        throw new Error('Error de la solicitud')
+      }
+      const data = await res.json()
+      console.log("respuesta del server: ", data)
+    } catch (error) {
+      console.log(error)
+    }
+
+
 
     //Se elimina el mensaje de succes
     setSucces("")
@@ -80,14 +96,14 @@ function Registro() {
     } if (!regexParaEmail.test(nuevoUsuario.email)) {
       setError("Ingrese un email válido")
       return
-    } if (nuevoUsuario.contraseña === "") {
-      setError("Ingrese su contraseña")
+    } if (nuevoUsuario.password === "") {
+      setError("Ingrese su password")
       return
-    } if (!regexPas.test(nuevoUsuario.contraseña)) {
+    } if (!regexPas.test(nuevoUsuario.password)) {
       setError("Ingrese un mínimo de 8 caracteres y un máximo de 15 , al menos una letra minúscula, al menos una letra mayúscula, al menos 1 dígito (número), al menos 1 caracter especial, que no existan espacios en blanco.")
       return
-    } if (nuevoUsuario.contraseña !== nuevoUsuario.confirmarContraseña) {
-      setError("Las contraseñas no coinciden")
+    } if (nuevoUsuario.password !== nuevoUsuario.confirmarpassword) {
+      setError("Las passwords no coinciden")
       return
     }
     //Se elimina el mensaje de error
@@ -160,11 +176,11 @@ function Registro() {
 
 
         <div className='campo-registro'>
-          <label className='label-registro'> Contraseña</label>
+          <label className='label-registro'> password</label>
           <input className='input-registro'
             type="password"
-            name='contraseña'
-            value={nuevoUsuario.contraseña}
+            name='password'
+            value={nuevoUsuario.password}
             onChange={handleChange}
 
           />
@@ -173,11 +189,11 @@ function Registro() {
         </div>
 
         <div className='campo-registro'>
-          <label className='label-registro'>Confirmar contraseña</label>
+          <label className='label-registro'>Confirmar password</label>
           <input className='input-registro'
             type="password"
-            name='confirmarContraseña'
-            value={nuevoUsuario.confirmarContraseña}
+            name='confirmarpassword'
+            value={nuevoUsuario.confirmarpassword}
             onChange={handleChange}
 
           />

@@ -65,7 +65,7 @@ app.get('/vehiculos/filtros', async (req, res) => {
         const unionDeFiltros = filtros.length > 0 ? 'WHERE ' + filtros.join(" AND ") : '';
         const consulta = `SELECT p.id_publicacion AS id_publicacion, p.id_usuario AS id_usuario, p.titulo AS titulo, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado ${unionDeFiltros};`;
         const { rows, rowCount } = await pool.query(consulta, values)
-        if(!rowCount){
+        if (!rowCount) {
             return res.status(404).send("No hay Autos publicados con estos filtros")
         }
         res.status(200).send(rows)
@@ -137,7 +137,7 @@ app.get("/perfil", autenticadorToken, async (req, res) => {
     const id_usuario = usuario.id_usuario
     console.log(id_usuario)
     const dataPerfil = await getDataPerfil(id_usuario)
-    res.status(200).json({ message: 'Acceso concedido a ruta privada', dataPerfil })
+    res.status(200).json([dataPerfil])
 })
 
 app.get("/editar-perfil", autenticadorToken, (req, res) => {
@@ -170,16 +170,20 @@ const key = process.env.LLAVESECRETA
 app.post('/registro', async (req, res) => {
     try {
         const { nombre, apellido, email, telefono, password, foto } = req.body
+        console.log(password)
         if (!nombre || !apellido || !email || !password) {
-            return res.status(500).json("Faltan datos para poder realizar el registro")
+            return res.status(502).json("Faltan datos para poder realizar el registro")
         }
         const values = [nombre, apellido, email, telefono, bcrypt.hashSync(password), foto]
         const consulta = "INSERT INTO usuarios (nombre, apellido, email, telefono, password, foto) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;"
-        const { rows } = await pool.query(consulta, values)
+        const { rows, rowCount } = await pool.query(consulta, values)
+        if (!rowCount) {
+            return res.status(400).send("No se ha podido registrar")
+        }
         res.status(201).json(rows[0])
     } catch (error) {
         console.log(error)
-        res.status(500).send("El usuario no se puede registrar " + error.detail)
+        res.status(501).send("El usuario no se puede registrar " + error.detail)
     }
 })
 
@@ -202,6 +206,7 @@ app.post('/login', async (req, res) => {
                 id_usuario: usuarioVerificado.id_usuario
             }, key)
             res.status(200).send({ token })
+            console.log(token)
         }
     } catch (error) {
         console.log(error)

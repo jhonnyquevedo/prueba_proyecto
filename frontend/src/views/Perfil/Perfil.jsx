@@ -1,11 +1,27 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Perfil.css';
 import fotoPerfil from '../../assets/img/vehiculo1.jpg';
 import { useNavigate } from 'react-router-dom';
+import { validacionRutaPerfil } from '../../fuction/funciones'
 
 function Perfil() {
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('token')
+    const permisos = async () => {
+      const data = await validacionRutaPerfil(token)
+      if(data){
+        setUsuario(data)
+      } else {
+        console.log("error al cargar la data")
+      }
+    }
+    permisos()
+  }, [])
+
+
   const [usuario, setUsuario] = useState({ // con la validacion del token debemos setear en Usuario con los datos correspondientes
     nombre: 'Juan',
     apellido: 'Pérez',
@@ -19,7 +35,6 @@ function Perfil() {
   const handleEditar = () => {
     navigate('/editar-perfil');
   };
-
   const handleEliminar = () => {
     console.log('Eliminar cuenta');
     alert('La cuenta ha sido eliminada exitosamente.');
@@ -51,8 +66,8 @@ function Perfil() {
           </button>
         </div>
       </div>
-      </div>
-    );
+    </div>
+  );
 }
 
-      export default Perfil;
+export default Perfil;
