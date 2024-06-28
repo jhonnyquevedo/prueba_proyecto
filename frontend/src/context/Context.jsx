@@ -4,6 +4,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     // autenticacion provisional del navbar
+    
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 
