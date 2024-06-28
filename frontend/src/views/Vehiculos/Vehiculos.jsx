@@ -1,17 +1,18 @@
 import { useEffect, useState, useContext } from "react";
 import Card from "../../components/card/Card";
-import { opciones } from "../../../public/opciones"; // de aca nos estamos trayendo las opciones que deberian estar en la base de datos, para poder mapear las opciones disponibles
-import { Link } from "react-router-dom";
 import './Vehiculos.css';
 import { AuthContext } from '../../context/Context'
+import { opciones } from "../../../public/opciones";
 
 function Vehiculos() {
 
-    const { getDataEstado, estados, getDataVehiculos, setDataCompletaVehiculos, dataCompletaVehiculos, getDataMarca, marcas } = useContext(AuthContext)
+    const { getDataTransmision, transmisiones, getDataEstado, estados, getDataVehiculos, setDataCompletaVehiculos, dataCompletaVehiculos, getDataMarca, marcas, getDataCategoria, categorias } = useContext(AuthContext)
     useEffect(() => {
         getDataVehiculos()
         getDataEstado()
         getDataMarca()
+        getDataCategoria()
+        getDataTransmision()
     }, [])
 
     // Estados para los filtros
@@ -23,7 +24,6 @@ function Vehiculos() {
     const [transmisionOpcion, setTransmisionOpcion] = useState("")
 
     // para ejecutar la descarga de la data de modelos segun la marca
-
     const [modelos, setModelos] = useState([])
     const getDataModelos = async (marcaOpcion) => {
         const id = marcaOpcion
@@ -53,8 +53,44 @@ function Vehiculos() {
     // funcion para aplicar flitro
     const aplicarFiltro = () => {
         // logica para hacer el llamado a la api y que traiga la data con los filtros aplicados
-        console.log("enviando peticion con filtros")
-        alert("peticion hecha")
+        const getDataFiltrada = async () => {
+            let fEstado = ``
+            if (estadoOpcion) {
+                fEstado = `&estado=${estadoOpcion}`
+                console.log(fEstado)
+            }
+            let fCategoria = ``
+            if (categoriaOpcion) {
+                fCategoria = `&categoria=${categoriaOpcion}`
+                console.log(fCategoria)
+            }
+            let fModelo = ``
+            if(modeloOpcion) {
+                fModelo = `&modelo=${modeloOpcion}`
+            }
+            let fMarca = ``
+            if(marcaOpcion){
+                fMarca = `&marca=${marcaOpcion}`
+            }
+            let fTransmision = ``
+            if(transmisionOpcion){
+                fTransmision=`&transmision=${transmisionOpcion}`
+            }
+            let fYear = ``
+            if(añoOpcion) {
+                fYear=`&year=${añoOpcion}`
+            }
+
+            const rutaConFiltros = `http://localhost:3000/vehiculos/filtros?${fEstado}${fCategoria}${fModelo}${fMarca}${fTransmision}${fYear}`
+            const res = await fetch(rutaConFiltros)
+            const dataFilt = await res.json()
+            if (!dataFilt) {
+                console.log("no existen datos para esos filtros")
+            }
+            console.log(dataFilt)
+            setDataCompletaVehiculos(dataFilt)
+        }
+        getDataFiltrada()
     }
 
     // funciones para ordenar la data
@@ -91,12 +127,17 @@ function Vehiculos() {
                             <option value={estado.id_estado} key={index} >{estado.nombre}</option>
                         )}
                     </select>
+
+
                     <select className="selectFiltros" value={categoriaOpcion} onChange={(element) => cambioEnCategoria(element)} >
                         <option value="">Categoria</option>
-                        {opciones[0].opcionesCategoria?.map((categoria, index) =>
-                            <option value={categoria} key={index}>{categoria}</option>
+                        {categorias?.map((categoria) =>
+                            <option value={categoria.id_categoria} key={categoria.id_categoria}>{categoria.nombre}</option>
                         )}
                     </select>
+
+
+
                     <select className="selectFiltros" value={marcaOpcion} onChange={(element) => cambioEnMarca(element)}>
                         <option value="">Marca</option>
                         {marcas?.map((marca, index) =>
@@ -109,7 +150,6 @@ function Vehiculos() {
                         {modelos?.map((modelo, index) =>
                             <option value={modelo.id_modelo} key={index}>{modelo.nombre}</option>
                         )}
-                        console.log(marcaOpcion)
                     </select>
 
                     <select className="selectFiltros" value={añoOpcion} onChange={(element) => cambioEnAño(element)}> {/* cambiar a input tipo numero limitado a 4 numeros validando que sea un numero entre 1950 a 2024*/}
@@ -120,11 +160,11 @@ function Vehiculos() {
                     </select>
                     <select className="selectFiltros" value={transmisionOpcion} onChange={cambioEnTransmision}>
                         <option value="">Transmision</option>
-                        {opciones[0].opcionTransmision.map((transmision, index) =>
-                            <option value={transmision} key={index}>{transmision}</option>
+                        {transmisiones?.map((transmision, index) =>
+                            <option value={transmision.id_transmision} key={index}>{transmision.nombre}</option>
                         )}
                     </select>
-                    <button className="btnBuscarFiltros" onClick={aplicarFiltro}>Buscar</button>
+                    <button className="btnBuscarFiltros" onClick={() => aplicarFiltro()}>Buscar</button>
                 </div>
 
                 <div className="ordernarPor">
