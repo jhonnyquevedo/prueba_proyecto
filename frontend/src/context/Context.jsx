@@ -14,7 +14,6 @@ const AuthProvider = ({ children }) => {
             const urlApi = 'http://localhost:3000/vehiculos'
             const res = await fetch(urlApi)
             const dataApi = await res.json()
-            console.log("esta es la data", dataApi)
             setDataCompletaVehiculos(dataApi)
         } catch (error) {
             console.log("hay un error", error)
@@ -46,6 +45,30 @@ const AuthProvider = ({ children }) => {
         }
     }
 
+    // peticion para recibir las categorias disponibles
+    const [categorias, setCategroria] = useState([])
+    const getDataCategoria = async () => {
+        try {
+            const res = await fetch('http://localhost:3000/categorias')
+            const dataCategorias = await res.json()
+            setCategroria(dataCategorias)
+        } catch (error) {
+
+        }
+    }
+
+    //peticion para recibir las categorias
+    const [transmisiones, setTransmisiones] = useState([])
+    const getDataTransmision = async () => {
+        try {
+            const res = await fetch('http://localhost:3000/transmisiones')
+            const dataTransmisiones = await res.json()
+            setTransmisiones(dataTransmisiones)
+        } catch (error) {
+            
+        }
+    }
+
     const login = () => {
         setIsAuthenticated(true);
     };
@@ -56,7 +79,7 @@ const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout, getDataEstado, estados, getDataVehiculos, setDataCompletaVehiculos, dataCompletaVehiculos, getDataMarca, marcas }}>
+        <AuthContext.Provider value={{ isAuthenticated, login, logout, getDataEstado, estados, getDataVehiculos, setDataCompletaVehiculos, dataCompletaVehiculos, getDataMarca, marcas, getDataCategoria, categorias, getDataTransmision, transmisiones }}>
             {children}
         </AuthContext.Provider>
     );

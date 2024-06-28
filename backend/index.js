@@ -14,6 +14,7 @@ app.listen(3000, console.log("servidor en funcionamiento"))
 
 // middleware
 app.use(express.json())
+
 // middleware para recibir consultas cruzadas
 app.use(cors())
 
@@ -26,16 +27,16 @@ app.get('/vehiculos', async (req, res) => {
     try {
         const consulta = `${queryVehiculos};`
         const { rows } = await pool.query(consulta)
-        res.json(rows)
+        res.status(200).send(rows)
     } catch (error) {
-        res.status(400).send("No se puede contactar a la base de datos", error)
+        res.status(500).send("No se puede contactar a la base de datos", error)
     }
 })
 
 // data con la aplicacion de filtros
 app.get('/vehiculos/filtros', async (req, res) => {
     try {
-        const { estado, categoria, marca, modelo, año, transmision } = req.query
+        const { estado, categoria, marca, modelo, year, transmision } = req.query
         let filtros = []
         const values = []
         const agregarFiltro = (campo, comparador, valor) => {
@@ -44,29 +45,32 @@ app.get('/vehiculos/filtros', async (req, res) => {
             filtros.push(`${campo} ${comparador} $${posicion}`);
         };
         if (estado) {
-            agregarFiltro("e.nombre", "=", estado)
+            agregarFiltro("e.id_estado", "=", estado)
         }
         if (categoria) {
-            agregarFiltro("c.nombre", "=", categoria)
+            agregarFiltro("c.id_categoria", "=", categoria)
         }
         if (marca) {
-            agregarFiltro("m.nombre", "=", marca)
+            agregarFiltro("m.id_marca", "=", marca)
         }
         if (modelo) {
-            agregarFiltro("mo.nombre", "=", modelo)
+            agregarFiltro("mo.id_modelo", "=", modelo)
         }
-        if (año) {
-            agregarFiltro("p.year", "=", año)
+        if (year) {
+            agregarFiltro("p.year", "=", year)
         }
         if (transmision) {
-            agregarFiltro("t.nombre", "=", transmision)
+            agregarFiltro("t.id_transmision", "=", transmision)
         }
         const unionDeFiltros = filtros.length > 0 ? 'WHERE ' + filtros.join(" AND ") : '';
         const consulta = `SELECT p.id_publicacion AS id_publicacion, p.id_usuario AS id_usuario, p.titulo AS titulo, p.precio AS precio, m.nombre AS marca, mo.nombre AS modelo, p.year AS año, p.kilometraje AS kilometraje, t.nombre AS transmision, c.nombre AS categoria, e.nombre AS estado, p.descripcion AS descripcion, p.imagen AS imagen FROM publicaciones p JOIN marcas m ON p.id_marca = m.id_marca JOIN modelos mo ON p.id_modelo = mo.id_modelo JOIN transmisiones t ON p.id_transmision = t.id_transmision JOIN categorias c ON p.id_categoria = c.id_categoria JOIN estados e ON p.id_estado = e.id_estado ${unionDeFiltros};`;
-        const { rows } = await pool.query(consulta, values)
-        res.json(rows)
+        const { rows, rowCount } = await pool.query(consulta, values)
+        if(!rowCount){
+            return res.status(404).send("No hay Autos publicados con estos filtros")
+        }
+        res.status(200).send(rows)
     } catch (error) {
-        console.log(error)
+        res.status(500).send("No se pudo conectar con el servidor")
     }
 })
 
@@ -99,7 +103,7 @@ app.get('/transmisiones', async (req, res) => {
     try {
         const consulta = "SELECT * FROM transmisiones;"
         const { rows } = await pool.query(consulta)
-        res.json(rows[0])
+        res.json(rows)
     } catch (error) {
         console.log(error)
     }
