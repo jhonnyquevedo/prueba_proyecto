@@ -170,16 +170,20 @@ const key = process.env.LLAVESECRETA
 app.post('/registro', async (req, res) => {
     try {
         const { nombre, apellido, email, telefono, password, foto } = req.body
+        console.log( password)
         if (!nombre || !apellido || !email || !password) {
-            return res.status(500).json("Faltan datos para poder realizar el registro")
+            return res.status(502).json("Faltan datos para poder realizar el registro")
         }
         const values = [nombre, apellido, email, telefono, bcrypt.hashSync(password), foto]
         const consulta = "INSERT INTO usuarios (nombre, apellido, email, telefono, password, foto) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;"
-        const { rows } = await pool.query(consulta, values)
+        const { rows, rowCount } = await pool.query(consulta, values)
+        if(!rowCount){
+            return res.status(400).send("No se ha podido registrar")
+        }
         res.status(201).json(rows[0])
     } catch (error) {
         console.log(error)
-        res.status(500).send("El usuario no se puede registrar " + error.detail)
+        res.status(501).send("El usuario no se puede registrar " + error.detail)
     }
 })
 
