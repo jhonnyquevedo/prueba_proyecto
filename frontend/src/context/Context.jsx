@@ -69,6 +69,21 @@ const AuthProvider = ({ children }) => {
         }
     }
 
+    //peticion para recibir los modelos
+    const [modelos, setModelos] = useState([])
+    const getDataModelos = async (marcaOpcion) => {
+        const id = marcaOpcion
+        const url = `http://localhost:3000/modelos/${id}`
+        console.log(url)
+        try {
+            const res = await fetch(url)
+            const dataModelo = await res.json()
+            setModelos(dataModelo)
+        } catch (error) {
+            console.log("no se pudo conectar con el servidor")
+        }
+    }
+
     const login = () => {
         setIsAuthenticated(true);
     };
@@ -79,7 +94,7 @@ const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout, getDataEstado, estados, getDataVehiculos, setDataCompletaVehiculos, dataCompletaVehiculos, getDataMarca, marcas, getDataCategoria, categorias, getDataTransmision, transmisiones }}>
+        <AuthContext.Provider value={{getDataModelos, modelos, isAuthenticated, login, logout, getDataEstado, estados, getDataVehiculos, setDataCompletaVehiculos, dataCompletaVehiculos, getDataMarca, marcas, getDataCategoria, categorias, getDataTransmision, transmisiones }}>
             {children}
         </AuthContext.Provider>
     );

@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { opciones } from "../../../public/opciones";
+import { AuthContext } from '../../context/Context'
 import './PublicarAviso.css';
 
 const formatNumber = (num) => {
   return num.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
 
+
 function PublicarAviso() {
+
+  const { getDataModelos, modelos, getDataTransmision, transmisiones, getDataEstado, estados, getDataMarca, marcas, getDataCategoria, categorias } = useContext(AuthContext)
+  useEffect(() => {
+    getDataTransmision()
+    getDataEstado()
+    getDataMarca()
+    getDataCategoria()
+  }, [])
+
   const [vehiculo, setVehiculo] = useState({
     titulo: '',
     precio: '',
@@ -20,6 +31,12 @@ function PublicarAviso() {
     descripcion: '',
     imagen: null
   });
+
+  const cambioDeMarca = (event) => {
+    const { name, value } = event.target;
+    setVehiculo({ ...vehiculo, [name]: value })
+    getModeloPorMarca(value)
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -54,11 +71,9 @@ function PublicarAviso() {
   };
 
   // falta dejar mapeados los select ya que los datos se deben seleccionar 
-  const getModeloPorMarca = (marca) => {
-    const marcaElegida = opciones[0].opcionMarcaYModelo.find(element => element.nombre === marca);
-    return marcaElegida ? marcaElegida.modelos : [];
+  const getModeloPorMarca = (id) => {
+    getDataModelos(id)
   };
-
   return (
 
     <div className="container-publicar-aviso">
@@ -78,17 +93,14 @@ function PublicarAviso() {
 
           <label className="label-publicar-aviso">
             Estado
-            <select
-              name="estado"
-              value={vehiculo.estado}
-              onChange={handleChange}
-              required
-            >
+            <select type="text" name="estado" value={vehiculo.estado} onChange={handleChange} required >
               <option value="">Seleccione</option>
-              <option value="nuevo">Nuevo</option>
-              <option value="usado">Usado</option>
+              {estados?.map((estado, index) =>
+                <option value={estado.id_estado} key={index}>{estado.nombre}</option>
+              )}
             </select>
           </label >
+
           <label className="label-publicar-aviso">
             Categoría
             <select className='input-publicar-aviso'
@@ -99,8 +111,8 @@ function PublicarAviso() {
               required
             >
               <option value="">Categoria</option>
-              {opciones[0].opcionesCategoria?.map((categoria, index) =>
-                <option value={categoria} key={index}>{categoria}</option>
+              {categorias?.map((categoria, index) =>
+                <option value={categoria.id_categoria} key={index}>{categoria.nombre}</option>
               )}
             </select>
           </label>
@@ -112,12 +124,12 @@ function PublicarAviso() {
               type="text"
               name="marca"
               value={vehiculo.marca}
-              onChange={handleChange}
+              onChange={cambioDeMarca}
               required
             >
               <option value="">Marca</option>
-              {opciones[0].opcionMarcaYModelo?.map((marca, index) =>
-                <option value={marca.nombre} key={index}>{marca.nombre}</option>
+              {marcas?.map((marca, index) =>
+                <option value={marca.id_marca} key={index}>{marca.nombre}</option>
               )}
             </select>
           </label>
@@ -132,8 +144,8 @@ function PublicarAviso() {
               required
             >
               <option value="">Modelo</option>
-              {getModeloPorMarca(vehiculo.marca).map((modelo, index) =>
-                <option value={modelo} key={index}>{modelo}</option>
+              {modelos.map((modelo, index) =>
+                <option value={modelo.id_modelo} key={index}>{modelo.nombre}</option>
               )}
             </select>
           </label>
@@ -168,16 +180,11 @@ function PublicarAviso() {
         <div className="inline-fields">
           <label className="label-publicar-aviso">
             Transmisión
-            <select className='input-publicar-aviso'
-              type="text"
-              name="transmision"
-              value={vehiculo.transmision}
-              onChange={handleChange}
-              required
-            >
-            <option value="">Transmisión</option>
-              <option value="nuevo">Manual</option>
-              <option value="usado">Automático</option>
+            <select className='input-publicar-aviso' type="text" name="transmision" value={vehiculo.transmision} onChange={handleChange} required>
+              <option value="">Transmisión</option>
+              {transmisiones?.map((transmision, index) =>
+                <option value={transmision.id_transmision} key={index}>{transmision.nombre}</option>
+              )}
             </select>
           </label>
           <label className="label-publicar-aviso">
