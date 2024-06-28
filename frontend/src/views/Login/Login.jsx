@@ -6,8 +6,6 @@ import { useState } from 'react'
 
 function Login() {
 
-    
-
     //Expresión regular para validar que el campo de email contenga el formato adecuado
     const regexParaEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
@@ -26,7 +24,6 @@ function Login() {
         login()
         navigate('/')
     }
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -53,6 +50,7 @@ function Login() {
         handleLogin()
         peticionLoginPost()
         navigate('/perfil')
+
     }
 
     const peticionLoginPost = async () => {
@@ -67,10 +65,10 @@ function Login() {
             if (!res.ok) {
                 throw new Error('Error de la solicitud')
             }
-            const data = await res.json()
-            console.log("respuesta del server: ", data)
+            const { token } = await res.json()
+            sessionStorage.setItem('token', token);
         } catch (error) {
-
+// falta el error
         }
 
     }
