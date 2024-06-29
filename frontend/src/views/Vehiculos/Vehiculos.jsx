@@ -65,7 +65,8 @@ function Vehiculos() {
                 fYear=`&year=${añoOpcion}`
             }
 
-            const rutaConFiltros = `http://localhost:3000/vehiculos/filtros?${fEstado}${fCategoria}${fModelo}${fMarca}${fTransmision}${fYear}`
+            //http://localhost:3000
+            const rutaConFiltros = `https://prueba-proyecto-5xac.onrender.com/vehiculos/filtros?${fEstado}${fCategoria}${fModelo}${fMarca}${fTransmision}${fYear}`
             const res = await fetch(rutaConFiltros)
             const dataFilt = await res.json()
             if (!dataFilt) {
