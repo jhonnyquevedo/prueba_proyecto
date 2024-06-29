@@ -15,7 +15,7 @@ function Navbar() {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
+ 
   const handleLogout = () => {
     logout();
     navigate('/');
